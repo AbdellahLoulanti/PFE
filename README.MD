@@ -46,14 +46,14 @@ This platform provides associations with powerful tools to:
   - [ ]  Manage Events
   - [ ]  Event can have multiple tags (#technology, #health, etc.)
   - [ ]  Event can be public or private
-- [ ] **Product**
+- [ ] **Products**
   - [ ]  Manage Products
 - [ ] **Payment**
   - [ ]  Visitor can buy products
   - [ ]  can add products to cart
 
  more feature 
+ API
  AI
  Newsletter
  UI (tailwindcss)
- 
