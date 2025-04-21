@@ -63,6 +63,7 @@ class BlogPostResource extends Resource
                 TextColumn::make('tags'),
                 TextColumn::make('status')
                 ->label('Status')
+                ->badge()
                 ->color(fn (string $state): string => match ($state) {
                     'published' => 'success',
                     'draft' => 'warning',
