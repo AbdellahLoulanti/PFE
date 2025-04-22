@@ -54,7 +54,8 @@ class UserPolicy
         if($user->hasPermissionTo('user.delete')){
             return true;
         }
-        return false;    }
+        return false;
+        }
 
     /**
      * Determine whether the user can restore the model.

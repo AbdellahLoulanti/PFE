@@ -13,7 +13,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/pages/{slug}', [PageController::class, 'show'])->name('pages.show');
 
 
 
