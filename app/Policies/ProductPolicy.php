@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Product;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class ProductPolicy
 {
@@ -13,9 +12,10 @@ class ProductPolicy
      */
     public function viewAny(User $user): bool
     {
-        if($user->hasPermissionTo('product.view')){
+        if ($user->hasPermissionTo('product.view')) {
             return true;
         }
+
         return false;
     }
 
@@ -32,30 +32,36 @@ class ProductPolicy
      */
     public function create(User $user): bool
     {
-        if($user->hasPermissionTo('product.create')){
+        if ($user->hasPermissionTo('product.create')) {
             return true;
         }
-        return false;    }
+
+        return false;
+    }
 
     /**
      * Determine whether the user can update the model.
      */
     public function update(User $user, Product $product): bool
     {
-        if($user->hasPermissionTo('product.edit')){
+        if ($user->hasPermissionTo('product.edit')) {
             return true;
         }
-        return false;    }
+
+        return false;
+    }
 
     /**
      * Determine whether the user can delete the model.
      */
     public function delete(User $user, Product $product): bool
     {
-        if($user->hasPermissionTo('product.delete')){
+        if ($user->hasPermissionTo('product.delete')) {
             return true;
         }
-        return false;    }
+
+        return false;
+    }
 
     /**
      * Determine whether the user can restore the model.

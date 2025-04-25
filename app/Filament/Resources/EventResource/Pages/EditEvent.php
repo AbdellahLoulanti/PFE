@@ -23,7 +23,7 @@ class EditEvent extends EditRecord
     }
 
     protected function getSavedNotificationTitle(): ?string
-{
-    return 'Event updated';
-}
+    {
+        return 'Event updated';
+    }
 }

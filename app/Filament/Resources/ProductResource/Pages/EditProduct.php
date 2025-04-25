@@ -16,13 +16,14 @@ class EditProduct extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');
     }
 
     protected function getSavedNotificationTitle(): ?string
-{
-    return 'Product updated';
-}
+    {
+        return 'Product updated';
+    }
 }

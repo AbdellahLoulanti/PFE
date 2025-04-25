@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
-
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -15,15 +14,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-     $user = User::factory()->create([
-        'name'=>'admin',
-        'email'=>'admin@gmail.com',
-     ]);
-     $role = Role::create(['name'=>'admin']);
-     $user->assignRole($role);
+        $user = User::factory()->create([
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+        ]);
+        $role = Role::create(['name' => 'admin']);
+        $user->assignRole($role);
 
-       $this->call(PermissionSeeder::class);
+        $this->call(PermissionSeeder::class);
 
     }
-
 }

@@ -2,11 +2,11 @@
 
 namespace App\Filament\Widgets;
 
+use App\Models\Event;
+use App\Models\Product;
+use App\Models\User;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
-use App\Models\User;
-use App\Models\Product;
-use App\Models\Event;
 
 class GlobalStats extends BaseWidget
 {

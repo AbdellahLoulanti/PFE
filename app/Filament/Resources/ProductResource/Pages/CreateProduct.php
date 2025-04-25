@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\ProductResource\Pages;
 
 use App\Filament\Resources\ProductResource;
-use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateProduct extends CreateRecord
@@ -14,6 +13,7 @@ class CreateProduct extends CreateRecord
     {
         return $this->getResource()::getUrl('index');
     }
+
     protected function getCreatedNotificationTitle(): ?string
     {
         return 'Product created';

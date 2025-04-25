@@ -1,21 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\MemberController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
-use App\Http\Controllers\Admin\MemberController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\ContactController;
-
-
-
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
-
-
-
-
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'is_admin'])->group(function () {
     Route::resource('members', MemberController::class);
