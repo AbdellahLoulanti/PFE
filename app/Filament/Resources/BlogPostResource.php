@@ -3,24 +3,15 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\BlogPostResource\Pages;
-use App\Filament\Resources\BlogPostResource\RelationManagers;
 use App\Models\BlogPost;
 use Filament\Forms;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Table;
-use Filament\Tables\Columns\ImageColumn;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\TagsColumn;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TagsInput;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\RichEditor;
+use Filament\Tables\Table;
 
 class BlogPostResource extends Resource
 {
@@ -33,23 +24,22 @@ class BlogPostResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
-                ->required(),
+                    ->required(),
 
                 RichEditor::make('content')
-                ->columnSpan(2),
+                    ->columnSpan(2),
 
                 Select::make('status')
-                ->label('Status')
-                ->options([
-                    'draft' => 'Draft',
-                    'published' => 'Published',
-                ])->default('draft')
-                ->required()
-                ->native(false),
-                
-                Forms\Components\TextInput::make('tags')
-                ->placeholder('Ex: #technology, #business ,#health'),
+                    ->label('Status')
+                    ->options([
+                        'draft' => 'Draft',
+                        'published' => 'Published',
+                    ])->default('draft')
+                    ->required()
+                    ->native(false),
 
+                Forms\Components\TextInput::make('tags')
+                    ->placeholder('Ex: #technology, #business ,#health'),
 
             ]);
     }
@@ -62,16 +52,16 @@ class BlogPostResource extends Resource
                 TextColumn::make('slug'),
                 TextColumn::make('tags'),
                 TextColumn::make('status')
-                ->label('Status')
-                ->badge()
-                ->color(fn (string $state): string => match ($state) {
-                    'published' => 'success',
-                    'draft' => 'warning',
-                    default => 'gray',
-                }),
+                    ->label('Status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'published' => 'success',
+                        'draft' => 'warning',
+                        default => 'gray',
+                    }),
                 TextColumn::make('created_at')->dateTime(),
 
-     TextColumn::make('user.name')->label("User name"),
+                TextColumn::make('user.name')->label('User name'),
             ])
             ->filters([
                 //
