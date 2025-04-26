@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\MemberController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -8,9 +7,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'is_admin'])->group(function () {
-    Route::resource('members', MemberController::class);
-});
+
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

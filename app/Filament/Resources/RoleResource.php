@@ -3,7 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\RoleResource\Pages;
-use App\Models\Role;
+use Spatie\Permission\Models\Role;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -13,10 +13,14 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use App\Policies\RolePolicy;
+
 
 class RoleResource extends Resource
 {
     protected static ?string $model = Role::class;
+
+    protected static ?string $policy = RolePolicy::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-finger-print';
 
@@ -89,4 +93,10 @@ class RoleResource extends Resource
     {
         return parent::getEloquentQuery()->where('name', '!=', 'admin');
     }
+
+    public static function canViewAny(): bool
+{
+    return auth()->user()?->hasRole('admin');
+}
+
 }
