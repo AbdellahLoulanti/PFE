@@ -38,9 +38,6 @@ class BlogPostResource extends Resource
                     ->required()
                     ->native(false),
 
-                Forms\Components\TextInput::make('tags')
-                    ->placeholder('Ex: #technology, #business ,#health'),
-
             ]);
     }
 
@@ -50,7 +47,6 @@ class BlogPostResource extends Resource
             ->columns([
                 TextColumn::make('title')->searchable(),
                 TextColumn::make('slug'),
-                TextColumn::make('tags'),
                 TextColumn::make('status')
                     ->label('Status')
                     ->badge()
