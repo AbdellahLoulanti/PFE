@@ -18,17 +18,7 @@ class PermissionSeeder extends Seeder
             // Utilisateurs
             'user.view', 'user.create', 'user.edit', 'user.delete',
 
-            // Articles de blog
-            'blog.view', 'blog.create', 'blog.edit', 'blog.delete', 'blog.publish', 'blog.unpublish',
 
-            // Événements
-            'event.view', 'event.create', 'event.edit', 'event.delete', 'event.publish', 'event.unpublish',
-
-            // Produits
-            'product.view', 'product.create', 'product.edit', 'product.delete',
-
-            // Paiements
-            'payment.view', 'payment.create', 'payment.process',
         ];
 
         // Créer chaque permission si elle n'existe pas déjà

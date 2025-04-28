@@ -58,12 +58,8 @@ class UserResource extends Resource
                             $set('permissions', $permissions);
                         }),
 
-                    Select::make('permissions')
-                        ->label('Permissions')
-                        ->multiple()
-                        ->relationship('permissions', 'name')
-                        ->preload(),
-                ])->columns(2),
+
+                ])
 
             ]);
     }

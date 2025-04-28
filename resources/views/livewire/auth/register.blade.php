@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Models\User;
@@ -14,49 +15,78 @@ new #[Layout('components.layouts.auth')] class extends Component {
     public string $password = '';
     public string $password_confirmation = '';
 
+    /**
+     * Handle an incoming registration request.
+     */
     public function register(): void
     {
-        // Validation des champs (sans le champ "role")
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        // Ajout automatique du rôle "member"
         $validated['password'] = Hash::make($validated['password']);
-        $validated['role'] = 'member';
 
-        // Création de l'utilisateur
-        $user = User::create($validated);
+        event(new Registered(($user = User::create($validated))));
 
-        // Déclenchement de l'événement d'inscription
-        event(new Registered($user));
-
-        // Connexion automatique
         Auth::login($user);
 
-        // Redirection vers le tableau de bord "member"
-        $this->redirectIntended(route('dashboard'), navigate: true);
+        $this->redirectIntended(route('dashboard', absolute: false), navigate: true);
     }
-};
-?>
+}; ?>
 
-<!-- HTML complet -->
 <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Create an account')" :description="__('Register to follow the association')" />
+    <x-auth-header :title="__('Create an account')" :description="__('Enter your details below to create your account')" />
 
+    <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
 
     <form wire:submit="register" class="flex flex-col gap-6">
-        <flux:input wire:model="name" :label="__('Name')" type="text" required autocomplete="name" placeholder="Full name" />
-        <flux:input wire:model="email" :label="__('Email')" type="email" required autocomplete="email" placeholder="email@example.com" />
-        <flux:input wire:model="password" :label="__('Password')" type="password" required autocomplete="new-password" placeholder="Password" />
-        <flux:input wire:model="password_confirmation" :label="__('Confirm Password')" type="password" required autocomplete="new-password" placeholder="Confirm Password" />
+        <!-- Name -->
+        <flux:input
+            wire:model="name"
+            :label="__('Name')"
+            type="text"
+            required
+            autofocus
+            autocomplete="name"
+            :placeholder="__('Full name')"
+        />
+
+        <!-- Email Address -->
+        <flux:input
+            wire:model="email"
+            :label="__('Email address')"
+            type="email"
+            required
+            autocomplete="email"
+            placeholder="email@example.com"
+        />
+
+        <!-- Password -->
+        <flux:input
+            wire:model="password"
+            :label="__('Password')"
+            type="password"
+            required
+            autocomplete="new-password"
+            :placeholder="__('Password')"
+        />
+
+        <!-- Confirm Password -->
+        <flux:input
+            wire:model="password_confirmation"
+            :label="__('Confirm password')"
+            type="password"
+            required
+            autocomplete="new-password"
+            :placeholder="__('Confirm password')"
+        />
 
         <div class="flex items-center justify-end">
             <flux:button type="submit" variant="primary" class="w-full">
-                {{ __('Register') }}
+                {{ __('Create account') }}
             </flux:button>
         </div>
     </form>

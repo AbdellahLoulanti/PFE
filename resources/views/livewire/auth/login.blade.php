@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Auth\Events\Lockout;
@@ -40,18 +41,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
 
-        $user = Auth::user();
-
-switch ($user->role) {
-    case 'admin':
-        $this->redirectIntended(route('dashboard'), navigate: true);
-        break;
-    case 'editor':
-        $this->redirectIntended(route('dashboard'), navigate: true);
-        break;
-    default:
-        $this->redirectIntended(route('dashboard'), navigate: true);
-}
+        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
     }
 
     /**
