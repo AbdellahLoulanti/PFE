@@ -14,7 +14,7 @@ class CreateBlogPost extends CreateRecord
     protected function handleRecordCreation(array $data): Model
     {
 
-        $blogPost = static::getModel()::create($data);
+        $blogPost = static::getModel()::make($data);
 
         $blogPost->user()->associate(Auth::user());
 
