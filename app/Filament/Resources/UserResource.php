@@ -31,37 +31,29 @@ class UserResource extends Resource
         return $form
             ->schema([
                 Card::make()->schema([
-                    TextInput::make('name')->required(),
-                    TextInput::make('email')->email()->required(),
+                    TextInput::make('name')
+                        ->required(),
+
+                    TextInput::make('email')
+                        ->email()
+                        ->required(),
+
                     Forms\Components\DateTimePicker::make('email_verified_at'),
+
                     TextInput::make('password')
                         ->password()
                         ->dehydrateStateUsing(fn ($state) => Hash::make($state))
                         ->dehydrated(fn ($state) => filled($state))
                         ->required(fn (string $context): bool => $context === 'create'),
+
                     Select::make('roles')
                         ->label('Rôles')
                         ->multiple()
                         ->relationship('roles', 'name')
-                        ->preload()
-                        ->reactive()
-                        ->afterStateUpdated(function (callable $set, $state) {
-                            $permissions = Role::whereIn('id', $state)
-                                ->with('permissions')
-                                ->get()
-                                ->pluck('permissions')
-                                ->flatten()
-                                ->pluck('id')
-                                ->unique()
-                                ->toArray();
-
-                            $set('permissions', $permissions);
-                        }),
-
-
-                ])
-
+                        ->preload(),
+                ]),
             ]);
+
     }
 
     public static function table(Table $table): Table
