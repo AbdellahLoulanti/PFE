@@ -16,10 +16,6 @@ class EditEvent extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> abdellah/users
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');
