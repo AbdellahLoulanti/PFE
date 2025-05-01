@@ -17,6 +17,7 @@ class PermissionSeeder extends Seeder
         $permissions = [
             // Utilisateurs
             'user.view', 'user.create', 'user.edit', 'user.delete',
+            'event.view', 'event.create', 'event.edit', 'event.delete',
 
 
         ];
