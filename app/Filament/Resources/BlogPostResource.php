@@ -76,7 +76,10 @@ class BlogPostResource extends Resource
                 ]),
             ]);
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> abdellah/users
     public static function getRelations(): array
     {
         return [
