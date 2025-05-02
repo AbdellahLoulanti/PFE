@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Product;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class ProductPolicy
 {
@@ -15,7 +14,8 @@ class ProductPolicy
     {
         if ($user->hasPermissionTo('product.view')) {
             return true;
-    }    
+        }
+
         return false;
     }
 
@@ -35,6 +35,7 @@ class ProductPolicy
         if ($user->hasPermissionTo('product.create')) {
             return true;
         }
+
         return false;
     }
 
@@ -46,6 +47,7 @@ class ProductPolicy
         if ($user->hasPermissionTo('product.edit')) {
             return true;
         }
+
         return false;
     }
 
@@ -57,6 +59,7 @@ class ProductPolicy
         if ($user->hasPermissionTo('product.delete')) {
             return true;
         }
+
         return false;
     }
 

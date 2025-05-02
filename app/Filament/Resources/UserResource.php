@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
-use Spatie\Permission\Models\Role;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Components\Card;

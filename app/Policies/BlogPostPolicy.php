@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\BlogPost;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class BlogPostPolicy
 {
@@ -15,8 +14,9 @@ class BlogPostPolicy
     {
         if ($user->hasPermissionTo('blogpost.view')) {
             return true;
-    }
-    return false;
+        }
+
+        return false;
     }
 
     /**
@@ -34,8 +34,9 @@ class BlogPostPolicy
     {
         if ($user->hasPermissionTo('blogpost.create')) {
             return true;
-    }
-    return false;
+        }
+
+        return false;
     }
 
     /**
@@ -46,6 +47,7 @@ class BlogPostPolicy
         if ($user->hasPermissionTo('blogpost.edit')) {
             return true;
         }
+
         return false;
     }
 
@@ -54,9 +56,10 @@ class BlogPostPolicy
      */
     public function delete(User $user, BlogPost $blogPost): bool
     {
-        if ($user->hasPermissionTo('event.delete')) {
+        if ($user->hasPermissionTo('blogpost.delete')) {
             return true;
         }
+
         return false;
     }
 

@@ -17,8 +17,8 @@ class PermissionSeeder extends Seeder
         $permissions = [
             // Utilisateurs
             'user.view', 'user.create', 'user.edit', 'user.delete',
-'blogpost.view', 'blogpost.create', 'blogpost.edit', 'blogpost.delete',
-'product.view', 'product.create', 'product.edit', 'product.delete',
+            'blogpost.view', 'blogpost.create', 'blogpost.edit', 'blogpost.delete',
+            'product.view', 'product.create', 'product.edit', 'product.delete',
 
         ];
 
