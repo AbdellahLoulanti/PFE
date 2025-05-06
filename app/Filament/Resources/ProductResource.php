@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Models\Product;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -27,6 +28,8 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
+                Select::make('user_id')
+                    ->hidden(),
                 TextInput::make('name')->required()->maxLength(255),
                 Textarea::make('description'),
                 TextInput::make('price')->required()->numeric(),
