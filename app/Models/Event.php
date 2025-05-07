@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Casts\AsCollection;
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
+
+
 
 class Event extends Model
 {
@@ -22,11 +26,20 @@ class Event extends Model
         'user_id',
     ];
 
-    protected $casts = [
-        'tags' => 'array',
-        'start_date' => 'datetime',
-        'end_date' => 'datetime',
-    ];
+    protected function tags(): Attribute
+    {
+        return Attribute::castUsing(AsArrayObject::class);
+    }
+
+    protected function startDate(): Attribute
+    {
+        return Attribute::cast('datetime');
+    }
+
+    protected function endDate(): Attribute
+    {
+        return Attribute::cast('datetime');
+    }
 
     public function user()
     {
