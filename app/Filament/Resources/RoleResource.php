@@ -3,10 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\RoleResource\Pages;
-<<<<<<< HEAD
-use App\Policies\RolePolicy;
-=======
->>>>>>> main
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -16,7 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Spatie\Permission\Models\Role;
+
 
 class RoleResource extends Resource
 {
@@ -98,4 +94,5 @@ class RoleResource extends Resource
     {
         return auth()->user()?->hasRole('admin');
     }
+
 }
