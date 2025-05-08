@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\EventResource\Pages;
 use App\Models\Event;
-use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -36,9 +36,10 @@ class EventResource extends Resource
                 TextInput::make('location')
                     ->required()
                     ->maxLength(255),
-                DateTimePicker::make('start_date')
+                DatePicker::make('start_date')
+                    ->before('end_date')
                     ->required(),
-                DateTimePicker::make('end_date')
+                DatePicker::make('end_date')
                     ->required(),
                 Select::make('visibility')
                     ->options([
