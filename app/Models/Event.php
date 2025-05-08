@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 
 
 
+
 class Event extends Model
 {
     use HasFactory;
@@ -26,21 +27,15 @@ class Event extends Model
         'user_id',
     ];
 
-    protected function tags(): Attribute
+    protected function casts(): array
     {
-        return Attribute::castUsing(AsArrayObject::class);
+        return [
+            'tags' => AsArrayObject::class,
+            'start_date' => 'datetime',
+            'end_date' => 'datetime',
+            'created_at' => 'datetime:Y-m-d',
+        ];
     }
-
-    protected function startDate(): Attribute
-    {
-        return Attribute::cast('datetime');
-    }
-
-    protected function endDate(): Attribute
-    {
-        return Attribute::cast('datetime');
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);
