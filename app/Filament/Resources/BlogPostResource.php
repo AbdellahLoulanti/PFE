@@ -19,7 +19,7 @@ class BlogPostResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    protected static ?string $navigationGroup = 'management';
+    protected static ?string $navigationGroup = 'Management';
 
     public static function form(Form $form): Form
     {
@@ -67,7 +67,6 @@ class BlogPostResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
-
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

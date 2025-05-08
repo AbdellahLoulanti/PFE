@@ -18,6 +18,8 @@ class PermissionSeeder extends Seeder
             // Utilisateurs
             'user.view', 'user.create', 'user.edit', 'user.delete',
             'event.view', 'event.create', 'event.edit', 'event.delete',
+            'blogpost.view', 'blogpost.create', 'blogpost.edit', 'blogpost.delete',
+            'product.view', 'product.create', 'product.edit', 'product.delete',
 
         ];
 

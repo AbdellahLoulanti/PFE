@@ -3,7 +3,10 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\RoleResource\Pages;
+<<<<<<< HEAD
 use App\Policies\RolePolicy;
+=======
+>>>>>>> main
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -18,8 +21,6 @@ use Spatie\Permission\Models\Role;
 class RoleResource extends Resource
 {
     protected static ?string $model = Role::class;
-
-    protected static ?string $policy = RolePolicy::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-finger-print';
 
