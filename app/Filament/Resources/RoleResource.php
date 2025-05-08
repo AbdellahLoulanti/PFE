@@ -3,7 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\RoleResource\Pages;
-use Spatie\Permission\Models\Role;
+use App\Policies\RolePolicy;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -13,8 +13,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use App\Policies\RolePolicy;
-
+use Spatie\Permission\Models\Role;
 
 class RoleResource extends Resource
 {
@@ -95,8 +94,7 @@ class RoleResource extends Resource
     }
 
     public static function canViewAny(): bool
-{
-    return auth()->user()?->hasRole('admin');
-}
-
+    {
+        return auth()->user()?->hasRole('admin');
+    }
 }

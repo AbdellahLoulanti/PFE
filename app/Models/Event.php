@@ -2,14 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Casts\AsCollection;
-use Illuminate\Database\Eloquent\Casts\AsArrayObject;
-
-
-
 
 class Event extends Model
 {
@@ -36,6 +31,7 @@ class Event extends Model
             'created_at' => 'datetime:Y-m-d',
         ];
     }
+
     public function user()
     {
         return $this->belongsTo(User::class);

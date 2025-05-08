@@ -35,7 +35,6 @@ class UserPolicy
         return false;
     }
 
-
     /**
      * Determine whether the user can update the model.
      */
@@ -59,6 +58,4 @@ class UserPolicy
 
         return false;
     }
-
-
 }

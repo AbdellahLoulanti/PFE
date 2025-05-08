@@ -10,19 +10,17 @@ class CreateEvent extends CreateRecord
 {
     protected static string $resource = EventResource::class;
 
+    protected function handleRecordCreation(array $data): Model
+    {
 
-protected function handleRecordCreation(array $data): Model
-{
+        $event = static::getModel()::make($data);
 
-    $event = static::getModel()::make($data);
+        $event->user()->associate(auth()->user());
 
-    $event->user()->associate(auth()->user());
+        $event->save();
 
-    $event->save();
-
-    return $event;
-}
-
+        return $event;
+    }
 
     protected function getRedirectUrl(): string
     {

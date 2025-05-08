@@ -21,7 +21,6 @@ class BlogPostResource extends Resource
 
     protected static ?string $navigationGroup = 'management';
 
-
     public static function form(Form $form): Form
     {
         return $form
@@ -76,6 +75,7 @@ class BlogPostResource extends Resource
                 ]),
             ]);
     }
+
     public static function getRelations(): array
     {
         return [
