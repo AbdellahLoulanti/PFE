@@ -25,6 +25,8 @@
     "devDependencies": {
         "@tailwindcss/postcss": "^4.1.4",
         "postcss-nested": "^7.0.2",
-        "postcss-nesting": "^13.0.1"
+        "postcss-nesting": "^13.0.1",
+        "sass": "^1.88.0",
+        "sass-embedded": "^1.88.0"
     }
 }

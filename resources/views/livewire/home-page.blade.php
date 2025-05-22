@@ -1,0 +1,130 @@
+<div>
+    <!-- Hero Section -->
+    <section class="relative h-screen bg-cover bg-center bg-no-repeat -mt-[60px]" style="background-image: url('/images/ki.png');">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black/50"></div>
+
+        <!-- Contenu -->
+        <div class="relative z-10 flex flex-col justify-center items-center h-full text-center px-6 text-white">
+          <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6 drop-shadow-lg">
+            Transformez votre présence en ligne
+          </h1>
+          <p class="text-lg md:text-xl max-w-2xl mx-auto mb-10 text-white/90">
+            Une plateforme moderne pour les <span class="text-teal-300 font-semibold">entreprises</span> et <span class="text-teal-300 font-semibold">associations</span> — créez un site, partagez vos actualités, gérez vos événements et promouvez vos produits.
+          </p>
+
+          <div class="flex flex-wrap justify-center gap-6">
+            <a href="#"
+               class="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition duration-300 hover:scale-105">
+              Créer un compte gratuitement
+            </a>
+            <a href="#features"
+               class="text-white border border-white hover:bg-white hover:text-teal-700 font-semibold py-3 px-8 rounded-lg transition duration-300 hover:scale-105">
+              Découvrir les fonctionnalités →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="py-24 bg-gradient-to-b from-white to-gray-50">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+          <h2 class="text-4xl font-extrabold text-gray-900 mb-16 tracking-tight">
+            Ce que vous pouvez faire avec notre plateforme
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+            <!-- Card 1 -->
+            <div class="bg-teal-600 rounded-3xl p-8 shadow-lg transform transition duration-300 ease-in-out hover:scale-105 hover:-translate-y-1 hover:shadow-2xl text-white">
+              <div class="w-16 h-16 mb-6 flex items-center justify-center rounded-full bg-white text-teal-600 mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9M12 4v16M5 12h7M8 8h8M8 16h8" />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-semibold mb-3">Créer un blog professionnel</h3>
+              <p class="text-base leading-relaxed">
+                Partagez vos idées et actualités avec une audience ciblée, sans code.
+              </p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-green-600 rounded-3xl p-8 shadow-lg transform transition duration-300 ease-in-out hover:scale-105 hover:-translate-y-1 hover:shadow-2xl text-white">
+              <div class="w-16 h-16 mb-6 flex items-center justify-center rounded-full bg-white text-green-600 mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-semibold mb-3">Organiser vos événements</h3>
+              <p class="text-base leading-relaxed">
+                Publiez, suivez et gérez des événements pour votre communauté ou votre entreprise.
+              </p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-sky-700 rounded-3xl p-8 shadow-lg transform transition duration-300 ease-in-out hover:scale-105 hover:-translate-y-1 hover:shadow-2xl text-white">
+              <div class="w-16 h-16 mb-6 flex items-center justify-center rounded-full bg-white text-sky-600 mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4" />
+                  <circle cx="7" cy="21" r="1" />
+                  <circle cx="17" cy="21" r="1" />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-semibold mb-3">Mettre en avant vos produits</h3>
+              <p class="text-base leading-relaxed">
+                Créez un mini-site pour présenter votre offre et la rendre visible.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+<!-- Events Section -->
+<section class="py-24 bg-gradient-to-br from-teal-50 to-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-teal-900 mb-16 text-center">Événements à venir</h2>
+
+      @if($events->isEmpty())
+        <p class="text-center text-gray-500">Aucun événement prévu pour l’instant.</p>
+      @else
+        <div class="grid lg:grid-cols-2 gap-10">
+          @foreach ($events as $event)
+            <a href="{{ route('events.show', ['id' => $event->id]) }}" class="flex items-stretch bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition hover:-translate-y-1">
+
+              <!-- Colonne gauche avec image + date -->
+              <div class="bg-teal-700 text-white flex flex-col items-center px-3 py-4 w-36">
+
+                <!-- Image de l'événement -->
+                @if($event->cover_image)
+                  <img src="{{ asset('storage/' . $event->cover_image) }}" alt="Image de l'événement"
+                       class="w-36 h-36 object-cover mb-4 rounded-md border-2 border-white shadow-sm">
+                @else
+                  <div class="w-32 h-32 bg-white mb-4 flex items-center justify-center text-teal-700 font-bold text-4xl rounded-md border-2 border-white">
+                    📅
+                  </div>
+                @endif
+
+                <!-- Date verticale -->
+                <span class="text-3xl font-bold">{{ \Carbon\Carbon::parse($event->start_date)->format('d') }}</span>
+                <span class="uppercase text-sm tracking-widest">{{ \Carbon\Carbon::parse($event->start_date)->format('M') }}</span>
+                <span class="text-xs mt-2">→ {{ \Carbon\Carbon::parse($event->end_date)->format('d/m') }}</span>
+              </div>
+
+              <!-- Colonne info -->
+              <div class="flex-1 p-6">
+                <h3 class="text-2xl font-semibold text-teal-800 mb-2">{{ $event->title }}</h3>
+                <p class="text-sm text-gray-500 mb-1">{{ $event->location }}</p>
+                <p class="text-gray-700 text-sm mb-3">{{ \Illuminate\Support\Str::limit($event->description, 130) }}</p>
+                <p class="text-teal-600 text-sm font-semibold hover:underline cursor-pointer">Voir plus →</p>
+            </div>
+
+            </a>
+          @endforeach
+        </div>
+      @endif
+    </div>
+  </section>
+</div>
+
