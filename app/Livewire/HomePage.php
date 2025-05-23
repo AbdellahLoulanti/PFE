@@ -2,8 +2,8 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use App\Models\Event;
+use Livewire\Component;
 
 class HomePage extends Component
 {
@@ -11,18 +11,14 @@ class HomePage extends Component
 
     public function mount()
     {
-        // Charger les 5 événements publics les plus proches
         $this->events = Event::where('visibility', 'public')
-                             ->orderBy('start_date', 'asc')
-                             ->take(5)
-                             ->get();
+            ->orderBy('start_date', 'asc')
+            ->take(5)
+            ->get();
     }
 
     public function render()
     {
-        // Passer $this->events à la vue
-        return view('livewire.home-page', [
-            'events' => $this->events,
-        ]);
+        return view('livewire.home-page');
     }
 }

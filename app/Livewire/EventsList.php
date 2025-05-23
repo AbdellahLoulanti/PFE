@@ -3,19 +3,18 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 use App\Models\Event;
 
 class EventsList extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'tailwind';
 
-    public $events;
-
-    public function mount()
-    {
-        $this->events = Event::latest()->get();
-    }
     public function render()
     {
-        return view('livewire.events-list');
+        return view('livewire.events-list', [
+            'events' => Event::latest()->paginate(10),
+        ]);
     }
 }

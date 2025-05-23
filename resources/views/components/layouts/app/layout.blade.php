@@ -11,10 +11,6 @@
       font-family: 'Inter', sans-serif;
     }
   </style>
-  <!-- Alpine.js pour l'interactivité -->
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-<!-- Lucide Icons -->
 <script type="module">
   import { createIcons } from 'https://unpkg.com/lucide@latest?module';
   createIcons();
@@ -45,7 +41,7 @@
             <a href="#" class="font-bold hover:text-[#008080] transition flex items-center gap-2">
               <i data-lucide="shopping-bag" class="w-4 h-4"></i> Produits
             </a>
-            <a href="{{route('AboutUs')}}" class="font-bold hover:text-[#008080] transition flex items-center gap-2">
+            <a href="{{route('about-us')}}" class="font-bold hover:text-[#008080] transition flex items-center gap-2">
               <i data-lucide="info" class="w-4 h-4"></i> À propos
             </a>
             <a href="{{ route('contact') }}" class="font-bold hover:text-[#008080] transition flex items-center gap-2">
@@ -98,7 +94,7 @@
               <a href="#" class="block hover:text-[#008080] flex items-center gap-2">
                 <i data-lucide="shopping-bag" class="w-4 h-4"></i> Produits
               </a>
-              <a href="{{route('AboutUs')}}" class="block hover:text-[#008080] flex items-center gap-2">
+              <a href="{{route('about-us')}}" class="block hover:text-[#008080] flex items-center gap-2">
                 <i data-lucide="info" class="w-4 h-4"></i> À propos
               </a>
               <a href="{{ route('contact') }}" class="block hover:text-[#008080] flex items-center gap-2">
@@ -139,7 +135,7 @@
           <li><a href="{{ route('home') }}" class="hover:text-teal-300 transition">Accueil</a></li>
           <li><a href="#" class="hover:text-teal-300 transition">Produits</a></li>
           <li><a href="{{ route('events') }}" class="hover:text-teal-300 transition">Évènements</a></li>
-          <li><a href="{{ route('AboutUs') }}" class="hover:text-teal-300 transition">À propos</a></li>
+          <li><a href="{{ route('about-us') }}" class="hover:text-teal-300 transition">À propos</a></li>
           <li><a href="{{ route('contact') }}" class="hover:text-teal-300 transition">Contact</a></li>
         </ul>
       </div>
@@ -167,9 +163,6 @@
       © {{ date('Y') }} MyProject. Tous droits réservés.
     </div>
   </footer>
-
-<!-- Alpine.js (fonctionne bien avec Livewire) -->
-<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
 <!-- Lucide Icons -->
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>

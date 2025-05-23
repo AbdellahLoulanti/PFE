@@ -12,10 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Spatie\Permission\Models\Role;  // <-- Importation du modèle Role de Spatie
-
-
-
+use Spatie\Permission\Models\Role;
 
 class RoleResource extends Resource
 {

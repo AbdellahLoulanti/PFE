@@ -3,7 +3,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
         @foreach($events as $event)
             <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
-                <img src="{{ asset('storage/' . $event->cover_image) }}" alt="Event Image" class="h-48 w-full object-cover">
+                <img src="{{ $event->cover_image_url }}" alt="Event Image" class="h-48 w-full object-cover">
                 <div class="p-6">
                     <h3 class="text-xl font-semibold mb-2 text-teal-700">{{ $event->title }}</h3>
                     <p class="text-sm text-gray-600 mb-4">{{ \Illuminate\Support\Str::limit($event->description, 100) }}</p>
