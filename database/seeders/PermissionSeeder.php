@@ -20,6 +20,7 @@ class PermissionSeeder extends Seeder
             'event.view', 'event.create', 'event.edit', 'event.delete',
             'blogpost.view', 'blogpost.create', 'blogpost.edit', 'blogpost.delete',
             'product.view', 'product.create', 'product.edit', 'product.delete',
+            'contactmessage.view', 'contactmessage.create', 'contactmessage.edit', 'contactmessage.delete',
 
         ];
 
