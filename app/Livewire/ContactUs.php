@@ -12,7 +12,6 @@ class ContactUs extends Component
     public $email;
     public $message;
 
-    // ✅ Règles de validation
     protected $rules = [
         'name' => 'required|min:3',
         'email' => 'required|email',
@@ -21,10 +20,8 @@ class ContactUs extends Component
 
     public function send()
     {
-        // ✅ Valider les champs
         $this->validate();
 
-        // ✅ Option : enregistrer en base
         ContactMessage::create([
              'name' => $this->name,
              'email' => $this->email,
