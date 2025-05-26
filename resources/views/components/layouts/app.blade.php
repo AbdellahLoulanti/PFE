@@ -1,5 +1,8 @@
-<x-layouts.app.sidebar :title="$title ?? null">
-    <flux:main>
+ @extends('components.layouts.app.layout')
+ @section('title', 'Accueil')
+
+ @section('content')
+   <flux:main>
         {{ $slot }}
     </flux:main>
-</x-layouts.app.sidebar>
+@endsection
