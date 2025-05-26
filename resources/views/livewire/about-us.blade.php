@@ -23,7 +23,7 @@
           <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full transition font-medium shadow-md">
             Explorer les blogs
           </a>
-          <a href="/evenements" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full transition font-medium shadow-md">
+          <a href="/events" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full transition font-medium shadow-md">
             Voir les événements
           </a>
           <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-full transition font-medium shadow-md">
