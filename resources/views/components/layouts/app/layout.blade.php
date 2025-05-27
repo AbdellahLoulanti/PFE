@@ -32,13 +32,13 @@
             <a href="{{ route('home') }}" class="font-bold hover:text-[#008080] transition flex items-center gap-2">
                 <i data-lucide="home" class="w-4 h-4"></i> Home
               </a>
-            <a href="#" class="font-bold hover:text-[#008080] transition flex items-center gap-2">
+            <a href="{{ route('blogs') }}" class="font-bold hover:text-[#008080] transition flex items-center gap-2">
               <i data-lucide="newspaper" class="w-4 h-4"></i> Blogs
             </a>
             <a href="{{ route('events') }}" class="font-bold hover:text-[#008080] transition flex items-center gap-2">
               <i data-lucide="calendar-days" class="w-4 h-4"></i> Évènements
             </a>
-            <a href="#" class="font-bold hover:text-[#008080] transition flex items-center gap-2">
+            <a href="{{route('products')}}" class="font-bold hover:text-[#008080] transition flex items-center gap-2">
               <i data-lucide="shopping-bag" class="w-4 h-4"></i> Produits
             </a>
             <a href="{{route('about-us')}}" class="font-bold hover:text-[#008080] transition flex items-center gap-2">
@@ -51,10 +51,21 @@
 
           <!-- Bouton Connexion -->
           <div class="hidden md:block">
-            <a href="{{ route('login') }}"
-               class="px-5 py-2 bg-[#008080] hover:bg-teal-700 transition rounded-lg text-white text-sm font-semibold flex items-center gap-2">
-               <i data-lucide="log-in" class="w-4 h-4"></i> login
-            </a>
+@auth
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit"
+            class="px-5 py-2 bg-[#008080] hover:bg-teal-700 transition rounded-lg text-white text-sm font-semibold flex items-center gap-2">
+            <i data-lucide="log-out" class="w-4 h-4"></i> se déconnecter
+        </button>
+    </form>
+@else
+    <a href="{{ route('login') }}"
+       class="px-5 py-2 bg-[#008080] hover:bg-teal-700 transition rounded-lg text-white text-sm font-semibold flex items-center gap-2">
+       <i data-lucide="log-in" class="w-4 h-4"></i> connecter
+    </a>
+@endauth
+
           </div>
 
           <!-- Menu mobile -->
@@ -85,13 +96,13 @@
                  <a href="{{ route('home') }}" class="font-bold hover:text-[#008080] transition flex items-center gap-2">
                     <i data-lucide="home" class="w-4 h-4"></i> Home
                   </a>
-              <a href="#" class="block hover:text-[#008080] flex items-center gap-2">
+              <a href="{{ route('blogs') }}" class="block hover:text-[#008080] flex items-center gap-2">
                 <i data-lucide="newspaper" class="w-4 h-4"></i> Blogs
               </a>
               <a href="{{ route('events') }}" class="block hover:text-[#008080] flex items-center gap-2">
                 <i data-lucide="calendar-days" class="w-4 h-4"></i> Évènements
               </a>
-              <a href="#" class="block hover:text-[#008080] flex items-center gap-2">
+              <a href="{{ route('products') }}" class="block hover:text-[#008080] flex items-center gap-2">
                 <i data-lucide="shopping-bag" class="w-4 h-4"></i> Produits
               </a>
               <a href="{{route('about-us')}}" class="block hover:text-[#008080] flex items-center gap-2">
