@@ -14,7 +14,7 @@ class EventsList extends Component
     public function render()
     {
         return view('livewire.events-list', [
-            'events' => Event::latest()->paginate(10),
+            'events' => Event::latest()->paginate(6),
         ]);
     }
 }

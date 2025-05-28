@@ -97,14 +97,8 @@
               <div class="bg-teal-700 text-white flex flex-col items-center px-3 py-4 w-36">
 
                 <!-- Image de l'événement -->
-                @if($event->cover_image)
-                  <img src="{{ asset('storage/' . $event->cover_image) }}" alt="Image de l'événement"
-                       class="w-36 h-36 object-cover mb-4 rounded-md border-2 border-white shadow-sm">
-                @else
-                  <div class="w-32 h-32 bg-white mb-4 flex items-center justify-center text-teal-700 font-bold text-4xl rounded-md border-2 border-white">
-                    📅
-                  </div>
-                @endif
+                <img src="{{ $event->cover_image_url }}" alt="Image de l'événement"
+                    class="w-36 h-36 object-cover mb-4 rounded-md border-2 border-white shadow-sm">
 
                 <!-- Date verticale -->
                 <span class="text-3xl font-bold">{{ \Carbon\Carbon::parse($event->start_date)->format('d') }}</span>

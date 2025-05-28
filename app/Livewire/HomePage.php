@@ -13,7 +13,7 @@ class HomePage extends Component
     {
         $this->events = Event::where('visibility', 'public')
             ->orderBy('start_date', 'asc')
-            ->take(5)
+            ->take(4)
             ->get();
     }
 

@@ -14,4 +14,8 @@
             </div>
         @endforeach
     </div>
+     <!-- Pagination -->
+    <div class="mt-8">
+        {{ $events->links() }}
+    </div>
 </div>
