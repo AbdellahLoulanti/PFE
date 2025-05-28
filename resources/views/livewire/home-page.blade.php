@@ -14,7 +14,7 @@
           </p>
 
           <div class="flex flex-wrap justify-center gap-6">
-            <a href="#"
+            <a href="{{ route('register') }}"
                class="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition duration-300 hover:scale-105">
               Créer un compte gratuitement
             </a>
