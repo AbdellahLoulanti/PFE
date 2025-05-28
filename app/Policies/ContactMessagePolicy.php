@@ -42,6 +42,9 @@ class ContactMessagePolicy
      */
     public function update(User $user, ContactMessage $contactMessage): bool
     {
+        if ($user->hasPermissionTo('contactmessage.edit')) {
+            return true;
+        }
         return false;
     }
 
@@ -50,6 +53,9 @@ class ContactMessagePolicy
      */
     public function delete(User $user, ContactMessage $contactMessage): bool
     {
+        if ($user->hasPermissionTo('contactmessage.delete')) {
+            return true;
+        }
         return false;
     }
 
