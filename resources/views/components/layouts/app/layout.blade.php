@@ -49,24 +49,35 @@
             </a>
           </nav>
 
-          <!-- Bouton Connexion -->
-          <div class="hidden md:block">
-@auth
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit"
-            class="px-5 py-2 bg-[#008080] hover:bg-teal-700 transition rounded-lg text-white text-sm font-semibold flex items-center gap-2">
-            <i data-lucide="log-out" class="w-4 h-4"></i> se déconnecter
-        </button>
-    </form>
-@else
-    <a href="{{ route('login') }}"
-       class="px-5 py-2 bg-[#008080] hover:bg-teal-700 transition rounded-lg text-white text-sm font-semibold flex items-center gap-2">
-       <i data-lucide="log-in" class="w-4 h-4"></i> connecter
-    </a>
-@endauth
+       <div class="hidden md:block">
+    @auth
+        @if(auth()->user()->canAccessPanel(\Filament\Facades\Filament::getCurrentPanel()))
+            <!-- ADMIN connecté -->
+            <a href="{{ route('filament.admin.pages.dashboard') }}"
+               class="px-5 py-2 bg-[#008080] hover:bg-teal-700 transition rounded-lg text-white text-sm font-semibold flex items-center gap-2">
+                <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard Admin
+            </a>
+        @else
+            <!-- Utilisateur connecté mais pas admin -->
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit"
+                        class="px-5 py-2 bg-[#008080] hover:bg-teal-700 transition rounded-lg text-white text-sm font-semibold flex items-center gap-2">
+                    <i data-lucide="log-out" class="w-4 h-4"></i> Se déconnecter
+                </button>
+            </form>
+        @endif
+    @else
+        <!-- Visiteur non connecté -->
+        <a href="{{ route('login') }}"
+           class="px-5 py-2 border border-[#008080] text-[#008080] hover:bg-[#008080] hover:text-white transition rounded-lg text-sm font-semibold flex items-center gap-2">
+            <i data-lucide="log-in" class="w-4 h-4"></i> Se connecter
+        </a>
+    @endauth
+</div>
 
-          </div>
+
+
 
           <!-- Menu mobile -->
           <div class="md:hidden">
@@ -112,10 +123,28 @@
                 <i data-lucide="mail" class="w-4 h-4"></i> Contact
               </a>
               <hr>
-              <a href="{{ route('login') }}"
-                 class="block text-center bg-[#008080] hover:bg-teal-700 text-white px-4 py-2 rounded flex items-center justify-center gap-2">
-                 <i data-lucide="log-in" class="w-4 h-4"></i> Connexion
-              </a>
+  @auth
+        @if(auth()->user()->canAccessPanel(\Filament\Facades\Filament::getCurrentPanel()))
+            <a href="{{ route('filament.admin.pages.dashboard') }}"
+               class="block w-full text-white bg-[#008080] hover:bg-teal-700 text-center rounded-lg py-2">
+                Dashboard Admin
+            </a>
+        @else
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit"
+                        class="w-full text-white bg-[#008080] hover:bg-teal-700 rounded-lg py-2">
+                    Se déconnecter
+                </button>
+            </form>
+        @endif
+    @else
+       <a href="{{ route('login') }}"
+   class="block w-full text-white bg-[#008080] hover:bg-teal-700 text-center rounded-lg py-2 transition duration-200">
+    Se connecter
+</a>
+
+    @endauth
             </div>
           </div>
         </div>

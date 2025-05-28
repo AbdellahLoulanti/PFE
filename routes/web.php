@@ -27,9 +27,7 @@ Route::get('/showproduct/{productId}', ShowProduct::class)->name('showproduct');
 Route::get('/checkout', CheckoutForm::class)->name('checkout');
 Route::get('/paiement', PaymentForm::class)->name('paiement');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');

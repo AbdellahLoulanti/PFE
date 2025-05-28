@@ -35,8 +35,11 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
-
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+            if (auth()->user()->canAccessPanel(\Filament\Facades\Filament::getCurrentPanel())) {
+        $this->redirect(route('filament.admin.pages.dashboard'), navigate: true); 
+    } else {
+        $this->redirect(route('home'), navigate: true); 
+    }
     }
 
     protected function ensureIsNotRateLimited(): void
