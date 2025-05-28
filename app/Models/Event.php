@@ -46,5 +46,9 @@ class Event extends Model
     // Sinon on retourne une image de remplacement (à créer dans public/images)
     return asset('images/fallback-event-image.jpg');
 }
+public function scopePublic($query)
+{
+    return $query->where('visibility', 'public');
+}
 
 }

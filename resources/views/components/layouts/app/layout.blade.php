@@ -52,23 +52,23 @@
           <!-- Bouton Connexion -->
           <div class="hidden md:block">
             @auth
-    @if(auth()->user()->canAccessPanel(\Filament\Facades\Filament::getCurrentPanel()))
-        <a href="{{ route('filament.admin.pages.dashboard') }}"
-           class="px-5 py-2 bg-[#008080] hover:bg-teal-700 transition rounded-lg text-white text-sm font-semibold flex items-center gap-2">
-            <i data-lucide="log-in" class="w-4 h-4"></i> Dashboard
-        </a>
-    @else
-        <a href="{{ route('filament.admin.auth.login') }}"
-           class="px-5 py-2 bg-[#008080] hover:bg-teal-700 transition rounded-lg text-white text-sm font-semibold flex items-center gap-2">
-            <i data-lucide="log-in" class="w-4 h-4"></i> Login
-        </a>
-    @endif
-@else
-    <a href="{{ route('filament.admin.auth.login') }}"
-       class="px-5 py-2 bg-[#008080] hover:bg-teal-700 transition rounded-lg text-white text-sm font-semibold flex items-center gap-2">
-        <i data-lucide="log-in" class="w-4 h-4"></i> Login
-    </a>
-@endauth
+                @if(auth()->user()->canAccessPanel(\Filament\Facades\Filament::getCurrentPanel()))
+                    <a href="{{ route('filament.admin.pages.dashboard') }}"
+                    class="px-5 py-2 bg-[#008080] hover:bg-teal-700 transition rounded-lg text-white text-sm font-semibold flex items-center gap-2">
+                        <i data-lucide="log-in" class="w-4 h-4"></i> Dashboard
+                    </a>
+                @else
+                    <a href="{{ route('filament.admin.auth.login') }}"
+                    class="px-5 py-2 bg-[#008080] hover:bg-teal-700 transition rounded-lg text-white text-sm font-semibold flex items-center gap-2">
+                        <i data-lucide="log-in" class="w-4 h-4"></i> Login
+                    </a>
+                @endif
+                @else
+                    <a href="{{ route('filament.admin.auth.login') }}"
+                    class="px-5 py-2 bg-[#008080] hover:bg-teal-700 transition rounded-lg text-white text-sm font-semibold flex items-center gap-2">
+                        <i data-lucide="log-in" class="w-4 h-4"></i> Login
+                    </a>
+            @endauth
 
           </div>
 
