@@ -59,5 +59,8 @@
         <p class="text-gray-500 col-span-3 text-center">Aucun article trouvé.</p>
       @endforelse
     </div>
+        <div class="mt-4 ">
+        {{ $posts->links() }}
+    </div>
   </div>
 </section>
