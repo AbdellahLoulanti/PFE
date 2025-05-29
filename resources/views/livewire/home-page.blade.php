@@ -80,6 +80,48 @@
           </div>
         </div>
       </section>
+ <!-- Articles Section -->
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-4xl font-bold text-teal-900 mb-16 text-center">
+      Inspirez-vous avec nos derniers articles
+    </h2>
+
+    @if($posts->isEmpty())
+      <div class="flex flex-col items-center justify-center py-12 bg-50 rounded-xl shadow text-center">
+        <svg class="w-16 h-16 text-teal-300 mb-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p class="text-lg text-gray-600">Aucun article disponible pour le moment.</p>
+      </div>
+    @else
+      <div class="grid md:grid-cols-3 gap-8">
+        @foreach ($posts as $post)
+          <article class="bg-gray-50 rounded-xl overflow-hidden shadow hover:shadow-lg transition transform hover:-translate-y-1">
+            @php
+              preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $post->content, $image);
+              $imageUrl = $image['src'] ?? "https://source.unsplash.com/600x400/?" . urlencode($post->title);
+            @endphp
+            <img
+              src="{{ $imageUrl }}"
+              alt="{{ $post->title }}"
+              class="w-full h-48 object-cover"
+              onerror="this.onerror=null;this.src='{{ asset('images/default.jpg') }}';"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">{{ $post->title }}</h3>
+              <p class="text-gray-600 mb-4 whitespace-pre-line">
+                {!! \Illuminate\Support\Str::limit(strip_tags($post->content), 100) !!}
+              </p>
+              <a href="{{ route('blog.show', $post->slug) }}" class="text-teal-700 font-semibold hover:underline">Lire l’article →</a>
+            </div>
+          </article>
+        @endforeach
+      </div>
+    @endif
+  </div>
+</section>
+
 
 <!-- Events Section -->
 <section class="py-24 bg-gradient-to-br from-teal-50 to-white">
