@@ -11,11 +11,12 @@
 
     <div class="grid md:grid-cols-3 gap-8">
       @forelse ($posts as $post)
-        @php
-          preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $post->content, $image);
-          $imageUrl = $image['src'] ?? "https://source.unsplash.com/600x400/?" . urlencode($post->title);
-          $excerpt = \Illuminate\Support\Str::limit(strip_tags($post->content), 100);
-        @endphp
+       @php
+  preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $post->content, $image);
+  $fallback = asset('images/default.jpg');
+  $imageUrl = $image['src'] ?? $fallback;
+  $excerpt = \Illuminate\Support\Str::limit(strip_tags($post->content), 100);
+@endphp
 
         <article class="flex flex-col items-start justify-between bg-white rounded-2xl overflow-hidden shadow-sm transition hover:shadow-lg hover:-translate-y-1 border border-gray-200">
           <div class="relative w-full">
@@ -23,7 +24,7 @@
               src="{{ $imageUrl }}" 
               alt="{{ $post->title }}" 
               class="aspect-video w-full object-cover bg-gray-100"
-              onerror="this.onerror=null;this.src='{{ asset('images/default.jpg') }}';"
+             
             >
             <div class="absolute inset-0 rounded-2xl ring-1 ring-gray-900/10 ring-inset"></div>
           </div>

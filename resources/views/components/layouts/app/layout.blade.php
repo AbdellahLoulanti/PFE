@@ -70,7 +70,7 @@
     @else
         <!-- Visiteur non connecté -->
         <a href="{{ route('login') }}"
-           class="px-5 py-2 border border-[#008080] text-[#008080] hover:bg-[#008080] hover:text-white transition rounded-lg text-sm font-semibold flex items-center gap-2">
+           class="px-5 py-2 bg-[#008080] hover:bg-teal-700 transition rounded-lg text-white text-sm font-semibold flex items-center gap-2">
             <i data-lucide="log-in" class="w-4 h-4"></i> Se connecter
         </a>
     @endauth

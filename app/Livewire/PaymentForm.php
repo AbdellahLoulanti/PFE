@@ -57,10 +57,12 @@ class PaymentForm extends Component
             $this->successMessage = 'Paiement réussi !';
 
             session()->forget('cart');
+            $this->successMessage = 'Paiement réussi !';
 
         } catch (\Exception $e) {
             $this->addError('stripe', $e->getMessage());
         }
+        
     }
 
     public function render()

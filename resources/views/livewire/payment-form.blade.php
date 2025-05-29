@@ -24,9 +24,17 @@
     <div>
     <h2 class="text-xl font-semibold text-teal-800 mb-4">Payer avec carte</h2>
 
-    @if($successMessage)
-        <div class="bg-green-100 text-green-700 p-3 rounded mb-4">{{ $successMessage }}</div>
+       @if($successMessage)
+        <div class="bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded relative mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M5 13l4 4L19 7"/>
+            </svg>
+            <span>{{ $successMessage }}</span>
+        </div>
     @endif
+
 
     @error('stripe')
         <div class="bg-red-100 text-red-700 p-3 rounded mb-4">{{ $message }}</div>
@@ -45,12 +53,7 @@
             <div class="relative">
                 <div id="card-element" class="px-4 py-3 border border-gray-300 rounded bg-gray-50"></div>
 
-                <!-- Icônes des cartes -->
-                <div class="absolute top-1/2 transform -translate-y-1/2 right-4 flex gap-1">
-                    <img src="https://img.icons8.com/color/24/000000/visa.png" alt="Visa" />
-                    <img src="https://img.icons8.com/color/24/000000/mastercard.png" alt="Mastercard" />
-                    <img src="https://img.icons8.com/color/24/000000/amex.png" alt="Amex" />
-                </div>
+
             </div>
         </div>
 
@@ -69,6 +72,7 @@
             Payer
         </button>
     </form>
+    
 
     <!-- Script Stripe -->
     <script src="https://js.stripe.com/v3/"></script>

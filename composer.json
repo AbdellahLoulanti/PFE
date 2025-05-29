@@ -16,7 +16,7 @@
         "livewire/volt": "^1.6.7",
         "spatie/laravel-permission": "^6.17",
         "spatie/laravel-sluggable": "^3.7",
-        "stripe/stripe-php": "^17.2"
+        "stripe/stripe-php": "^17.3"
     },
     "require-dev": {
         "doctrine/dbal": "^4.2",
