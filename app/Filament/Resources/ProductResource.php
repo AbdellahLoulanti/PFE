@@ -54,7 +54,7 @@ class ProductResource extends Resource
                 TextColumn::make('name')->searchable(),
                 ImageColumn::make('image')
                     ->label('Image')
-                    ->getStateUsing(fn ($record) => Storage::url($record->image))
+                    ->getStateUsing(fn ($record) => $record->image ? asset('storage/' . $record->image) : null)
                     ->width(80)
                     ->height(80)
                     ->extraImgAttributes([
