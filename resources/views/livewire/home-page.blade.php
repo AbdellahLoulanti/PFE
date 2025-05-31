@@ -1,6 +1,6 @@
 <div>
     <!-- Hero Section -->
-    <section class="relative h-screen bg-cover bg-center bg-no-repeat -mt-[60px]" style="background-image: url('/images/ki.png');">
+    <section class="relative h-screen bg-cover bg-center bg-no-repeat -mt-[55px]" style="background-image: url('/images/ki.png');">
         <!-- Overlay -->
         <div class="absolute inset-0 bg-black/50"></div>
 
@@ -162,6 +162,9 @@
       @endif
     </div>
   </section>
+
+  <!-- Products Section -->
+
 <section id="products" class="py-24 bg-gradient-to-br from-teal-50 to-white"  >
 <div class="max-w-7xl mx-auto px-6">
   <h2 class="text-4xl font-bold text-teal-900 mb-16 text-center">
@@ -179,7 +182,7 @@
     <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
       @foreach ($products as $product)
         <div class="bg-white rounded-2xl shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-1 p-6 flex flex-col items-center text-center">
-          
+
           <div class="bg-white rounded-xl p-2 flex items-center justify-center mb-4 max-h-48">
             <img
               src="{{ asset('storage/' . $product->image) }}"
@@ -188,7 +191,7 @@
               onerror="this.onerror=null;this.src='{{ asset('images/default-product.jpg') }}';"
             />
           </div>
-          
+
           <h3 class="text-lg font-semibold text-gray-800">{{ $product->name }}</h3>
           <p class="text-gray-600 text-md my-2">{{ number_format($product->price, 2) }} Dh</p>
           <a href="{{ route('showproduct', $product->id) }}"

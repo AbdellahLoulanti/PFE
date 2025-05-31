@@ -22,10 +22,11 @@
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
           <!-- Logo -->
-          <a href="{{ url('/') }}" class="flex items-center gap-3">
-            <img src="https://tailwindui.com/img/logos/mark.svg?color=white&shade=100" class="h-8 w-8" alt="Logo">
-            <span class="text-xl font-bold">MyProject</span>
-          </a>
+         <a href="{{ url('/') }}" class="flex items-center gap-3">
+            <img src="{{ asset('images/nb.png') }}" alt="Logo" class="h-11 w-auto scale-176">
+            <span class="text-xl font-semibold text-[#064d4d] ml-[10px]">Publix</span>
+        </a>
+
 
           <!-- Menu desktop -->
           <nav class="hidden md:flex gap-8 text-sm items-center">
