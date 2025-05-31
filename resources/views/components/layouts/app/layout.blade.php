@@ -173,7 +173,7 @@
         <h4 class="text-lg font-semibold text-white mb-4">Liens rapides</h4>
         <ul class="space-y-2">
           <li><a href="{{ route('home') }}" class="hover:text-teal-300 transition">Accueil</a></li>
-          <li><a href="#" class="hover:text-teal-300 transition">Produits</a></li>
+          <li><a href="{{ route('products') }}" class="hover:text-teal-300 transition">Produits</a></li>
           <li><a href="{{ route('events') }}" class="hover:text-teal-300 transition">Évènements</a></li>
           <li><a href="{{ route('about-us') }}" class="hover:text-teal-300 transition">À propos</a></li>
           <li><a href="{{ route('contact') }}" class="hover:text-teal-300 transition">Contact</a></li>
