@@ -36,11 +36,13 @@ new #[Layout('components.layouts.auth')] class extends Component {
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
             if (auth()->user()->canAccessPanel(\Filament\Facades\Filament::getCurrentPanel())) {
-        $this->redirect(route('filament.admin.pages.dashboard'), navigate: true); 
-    } else {
-        $this->redirect(route('home'), navigate: true); 
-    }
-    }
+    $this->redirect(route('filament.admin.pages.dashboard'), navigate: true);
+} elseif (session()->has('cart') && count(session('cart')) > 0) {
+    $this->redirect(route('checkout'), navigate: true); // Vers la page de commande si panier actif
+} else {
+    $this->redirect(route('home'), navigate: true);
+}
+}
 
     protected function ensureIsNotRateLimited(): void
     {
@@ -108,11 +110,19 @@ new #[Layout('components.layouts.auth')] class extends Component {
                     @endif
                 </div>
 
-                <!-- Submit -->
-                <button type="submit"
-                        class="w-full bg-teal-500 hover:bg-teal-600 text-white py-3 rounded-full font-semibold transition">
-                    Log In
-                </button>
+<button type="submit"
+        class="w-full bg-teal-500 hover:bg-teal-600 text-white py-3 rounded-full font-semibold transition flex items-center justify-center"
+        wire:loading.attr="disabled">
+    <svg wire:loading class="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+         viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10"
+                stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor"
+              d="M4 12a8 8 0 018-8v8z"></path>
+    </svg>
+    <span wire:loading.remove>Log In</span>
+</button>
+
             </form>
 
             <!-- Register -->

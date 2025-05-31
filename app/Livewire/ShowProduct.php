@@ -36,10 +36,8 @@ class ShowProduct extends Component
 
         session()->put('cart', $cart);
 
-
         $this->dispatch('cartUpdated');
 
-       
         return redirect()->route('products')->with('success', 'Produit ajouté au panier.');
     }
 

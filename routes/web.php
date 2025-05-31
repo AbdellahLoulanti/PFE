@@ -1,18 +1,19 @@
 <?php
-use Illuminate\Support\Facades\Route;
-use Livewire\Volt\Volt;
-use App\Livewire\Events;
-use App\Livewire\HomePage;
-use App\Livewire\EventsList;
+
 use App\Livewire\AboutUs;
-use App\Livewire\ContactUs;
 use App\Livewire\Blogs;
 use App\Livewire\BlogShow;
 use App\Livewire\Cart;
 use App\Livewire\CheckoutForm;
+use App\Livewire\ContactUs;
+use App\Livewire\Events;
+use App\Livewire\EventsList;
+use App\Livewire\HomePage;
 use App\Livewire\PaymentForm;
 use App\Livewire\Products;
 use App\Livewire\ShowProduct;
+use Illuminate\Support\Facades\Route;
+use Livewire\Volt\Volt;
 
 Route::get('/', HomePage::class)->name('home');
 Route::get('/events', EventsList::class)->name('events');
@@ -26,8 +27,6 @@ Route::get('/cart', Cart::class)->name('cart');
 Route::get('/showproduct/{productId}', ShowProduct::class)->name('showproduct');
 Route::get('/checkout', CheckoutForm::class)->name('checkout');
 Route::get('/paiement', PaymentForm::class)->name('paiement');
-
-
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');

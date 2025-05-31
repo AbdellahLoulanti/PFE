@@ -23,7 +23,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
         $validated['password'] = Hash::make($validated['password']);
         event(new Registered(($user = User::create($validated))));
         Auth::login($user);
-        $this->redirectIntended(route('dashboard', absolute: false), navigate: true);
+        $this->redirectIntended(route('checkout', absolute: false), navigate: true);
     }
 }; ?>
 
@@ -92,13 +92,18 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
 
 
-                <button type="submit"
-
-                    class="w-full bg-teal-500 hover:bg-teal-600 text-white py-3 rounded-full font-semibold transition">
-
-                    Create Account
-
-                </button>
+<button type="submit"
+        class="w-full bg-teal-500 hover:bg-teal-600 text-white py-3 rounded-full font-semibold transition flex items-center justify-center"
+        wire:loading.attr="disabled">
+    <svg wire:loading class="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+         viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10"
+                stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor"
+              d="M4 12a8 8 0 018-8v8z"></path>
+    </svg>
+    <span wire:loading.remove>Create Account</span>
+</button>
 
             </form>
 

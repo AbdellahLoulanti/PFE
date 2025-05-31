@@ -2,13 +2,14 @@
 
 namespace App\Livewire;
 
+use App\Models\Event;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Event;
 
 class EventsList extends Component
 {
     use WithPagination;
+
     protected $paginationTheme = 'tailwind';
 
     public function render()

@@ -162,5 +162,47 @@
       @endif
     </div>
   </section>
+<section id="products" class="py-24 bg-gradient-to-br from-teal-50 to-white"  >
+<div class="max-w-7xl mx-auto px-6">
+  <h2 class="text-4xl font-bold text-teal-900 mb-16 text-center">
+    Découvrez nos produits
+  </h2>
+
+  @if($products->isEmpty())
+    <div class="flex flex-col items-center justify-center py-12 bg-gray-50 rounded-xl shadow text-center">
+      <svg class="w-16 h-16 text-teal-300 mb-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2a2 2 0 012-2h2a2 2 0 012 2v2m-6 4h6a2 2 0 002-2V7a2 2 0 00-2-2H9a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+      <p class="text-lg text-gray-600">Aucun produit disponible pour le moment.</p>
+    </div>
+  @else
+    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+      @foreach ($products as $product)
+        <div class="bg-white rounded-2xl shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-1 p-6 flex flex-col items-center text-center">
+          
+          <div class="bg-white rounded-xl p-2 flex items-center justify-center mb-4 max-h-48">
+            <img
+              src="{{ asset('storage/' . $product->image) }}"
+              alt="{{ $product->name }}"
+              class="object-contain max-w-full max-h-48"
+              onerror="this.onerror=null;this.src='{{ asset('images/default-product.jpg') }}';"
+            />
+          </div>
+          
+          <h3 class="text-lg font-semibold text-gray-800">{{ $product->name }}</h3>
+          <p class="text-gray-600 text-md my-2">{{ number_format($product->price, 2) }} Dh</p>
+          <a href="{{ route('showproduct', $product->id) }}"
+             class="mt-auto bg-teal-700 hover:bg-Teal-800 text-white text-sm font-semibold px-6 py-2 rounded-lg transition">
+            Voir plus
+          </a>
+        </div>
+      @endforeach
+    </div>
+  @endif
+</div>
+
+
+
+</section>
 </div>
 

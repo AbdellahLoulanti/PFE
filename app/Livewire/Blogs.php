@@ -17,7 +17,7 @@ class Blogs extends Component
         $posts = BlogPost::with('user')
             ->where('status', 'published')
             ->orderBy('created_at', 'desc')
-            ->paginate(6); 
+            ->paginate(6);
 
         return view('livewire.blogs', [
             'posts' => $posts,

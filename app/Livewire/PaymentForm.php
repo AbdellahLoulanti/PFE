@@ -62,7 +62,7 @@ class PaymentForm extends Component
         } catch (\Exception $e) {
             $this->addError('stripe', $e->getMessage());
         }
-        
+
     }
 
     public function render()

@@ -67,10 +67,22 @@
         <!-- Champ caché pour token -->
         <input type="hidden" id="card_token" wire:model="card_token">
 
-        <!-- Bouton de paiement -->
-        <button type="submit" class="w-full px-4 py-3 bg-teal-600 text-white rounded font-semibold hover:bg-teal-700 transition">
-            Payer
-        </button>
+<div class="relative">
+    <button type="submit" class="w-full px-4 py-3 bg-teal-600 text-white rounded font-semibold hover:bg-teal-700 transition"
+            wire:loading.attr="disabled">
+        <span wire:loading.remove> Payer </span>
+        <span wire:loading class="flex items-center justify-center gap-2">
+            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                 viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                <path class="opacity-75" fill="currentColor"
+                      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
+            </svg>
+            Paiement...
+        </span>
+    </button>
+</div>
+
     </form>
     
 

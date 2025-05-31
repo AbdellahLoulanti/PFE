@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\ContactMessage;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class ContactMessagePolicy
 {
@@ -45,6 +44,7 @@ class ContactMessagePolicy
         if ($user->hasPermissionTo('contactmessage.edit')) {
             return true;
         }
+
         return false;
     }
 
@@ -56,6 +56,7 @@ class ContactMessagePolicy
         if ($user->hasPermissionTo('contactmessage.delete')) {
             return true;
         }
+
         return false;
     }
 

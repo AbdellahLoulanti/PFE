@@ -2,14 +2,16 @@
 
 namespace App\Livewire;
 
-use App\Models\Event;
 use App\Models\BlogPost;
+use App\Models\Event;
+use App\Models\Product;
 use Livewire\Component;
 
 class HomePage extends Component
 {
     public $events;
     public $posts;
+    public $products;
 
     public function mount()
     {
@@ -21,11 +23,15 @@ class HomePage extends Component
             ->orderBy('created_at', 'desc')
             ->take(3)
             ->get();
+         $this->products = Product::where('stock', '>', 0)
+         ->latest()
+         ->take(6)->get();
+
     }
 
     public function render()
     {
-        
+
         return view('livewire.home-page');
     }
 }

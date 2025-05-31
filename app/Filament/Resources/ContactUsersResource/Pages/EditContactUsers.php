@@ -4,9 +4,9 @@ namespace App\Filament\Resources\ContactUsersResource\Pages;
 
 use App\Filament\Resources\ContactUsersResource;
 use Filament\Actions;
-use Filament\Resources\Pages\EditRecord;
-use Filament\Forms\Form as FilamentForm; // Alias pour clarté
 use Filament\Forms;
+use Filament\Forms\Form as FilamentForm; // Alias pour clarté
+use Filament\Resources\Pages\EditRecord;
 
 class EditContactUsers extends EditRecord
 {

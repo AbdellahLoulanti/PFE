@@ -38,17 +38,18 @@ class Event extends Model
     }
 
     public function getCoverImageUrlAttribute()
-{
-    // Si la colonne cover_image contient un nom de fichier et que ce fichier existe dans storage/app/public
-    if ($this->cover_image && \Illuminate\Support\Facades\Storage::disk('public')->exists($this->cover_image)) {
-        return asset('storage/' . $this->cover_image);
-    }
-    // Sinon on retourne une image de remplacement (à créer dans public/images)
-    return asset('images/fallback-event-image.jpg');
-}
-public function scopePublic($query)
-{
-    return $query->where('visibility', 'public');
-}
+    {
+        // Si la colonne cover_image contient un nom de fichier et que ce fichier existe dans storage/app/public
+        if ($this->cover_image && \Illuminate\Support\Facades\Storage::disk('public')->exists($this->cover_image)) {
+            return asset('storage/'.$this->cover_image);
+        }
 
+        // Sinon on retourne une image de remplacement (à créer dans public/images)
+        return asset('images/fallback-event-image.jpg');
+    }
+
+    public function scopePublic($query)
+    {
+        return $query->where('visibility', 'public');
+    }
 }

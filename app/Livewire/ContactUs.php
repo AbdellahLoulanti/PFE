@@ -2,14 +2,15 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use App\Models\ContactMessage;
-
+use Livewire\Component;
 
 class ContactUs extends Component
 {
     public $name;
+
     public $email;
+
     public $message;
 
     protected $rules = [
@@ -23,10 +24,10 @@ class ContactUs extends Component
         $this->validate();
 
         ContactMessage::create([
-             'name' => $this->name,
-             'email' => $this->email,
-             'message' => $this->message,
-         ]);
+            'name' => $this->name,
+            'email' => $this->email,
+            'message' => $this->message,
+        ]);
 
         $this->reset('name', 'email', 'message');
 

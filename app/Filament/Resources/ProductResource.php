@@ -14,7 +14,6 @@ use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\Storage;
 
 class ProductResource extends Resource
 {
@@ -54,7 +53,7 @@ class ProductResource extends Resource
                 TextColumn::make('name')->searchable(),
                 ImageColumn::make('image')
                     ->label('Image')
-                   ->getStateUsing(fn ($record) => $record->image ? asset('storage/' . $record->image):null)
+                    ->getStateUsing(fn ($record) => $record->image ? asset('storage/'.$record->image) : null)
                     ->width(80)
                     ->height(80)
                     ->extraImgAttributes([

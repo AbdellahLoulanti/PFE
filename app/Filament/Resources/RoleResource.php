@@ -94,5 +94,4 @@ class RoleResource extends Resource
     {
         return auth()->user()?->hasRole('admin');
     }
-
 }
