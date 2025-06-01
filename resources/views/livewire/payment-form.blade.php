@@ -1,94 +1,55 @@
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-    <!-- Résumé à gauche -->
-    <div>
-        <h2 class="text-xl font-semibold text-teal-800 mb-4">Votre commande</h2>
-        <ul class="space-y-4">
-            @php
-    $cart = session()->get('cart', []);
-@endphp
-
-            @foreach ($cart as $item)
-                <li class="flex justify-between border-b pb-2">
-                    <span>{{ $item['name'] }} x {{ $item['quantity'] ?? 1 }}</span>
-                    <span>{{ number_format($item['price'] * ($item['quantity'] ?? 1), 2) }} DH</span>
-                </li>
-            @endforeach
-        </ul>
-        <div class="mt-6 border-t pt-4 text-lg font-semibold text-teal-800 flex justify-between">
-            <span>Total</span>
-            <span>{{ number_format($amount, 2) }} DH</span>
-        </div>
+<div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold mb-6 text-teal-700">Paiement sécurisé</h2>
+@if ($successMessage)
+    <div class="mt-4 text-green-600 font-semibold">
+        {{ $successMessage }}
     </div>
+@endif
 
-    <!-- Paiement à droite -->
-    <div>
-    <h2 class="text-xl font-semibold text-teal-800 mb-4">Payer avec carte</h2>
+    <form id="payment-form" wire:submit.prevent="processPayment">
+        <input type="text" wire:model="name" placeholder="Nom sur la carte" class="w-full mb-4 p-3 border rounded" />
+        @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
 
-       @if($successMessage)
-        <div class="bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded relative mb-4 flex items-center gap-2">
-            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="2"
-                 viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M5 13l4 4L19 7"/>
-            </svg>
-            <span>{{ $successMessage }}</span>
-        </div>
-    @endif
+        <input type="email" wire:model="email" placeholder="Email" class="w-full mb-4 p-3 border rounded" />
+        @error('email') <span class="text-red-500">{{ $message }}</span> @enderror
 
+        <div id="card-element" class="p-4 bg-gray-100 rounded border"></div>
+        <div id="card-errors" class="text-red-500 mt-2"></div>
 
-    @error('stripe')
-        <div class="bg-red-100 text-red-700 p-3 rounded mb-4">{{ $message }}</div>
-    @enderror
+       <button type="submit"
+    class="mt-6 w-full bg-teal-600 text-white py-3 rounded hover:bg-teal-700 transition flex items-center justify-center"
+    wire:loading.attr="disabled"
+    wire:target="processPayment">
 
-    <form wire:submit.prevent="processPayment" id="payment-form" class="space-y-4">
-        <!-- Email -->
-        <div>
-            <label class="block text-sm text-gray-600 mb-1">Email</label>
-            <input type="email" wire:model="email" placeholder="exemple@domaine.com" class="w-full px-4 py-3 rounded border border-gray-300 focus:ring-teal-500 focus:outline-none" required>
-        </div>
+    <!-- Loader pendant le chargement -->
+    <svg wire:loading wire:target="processPayment" class="animate-spin h-5 w-5 mr-2 text-white"
+        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10"
+            stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor"
+            d="M4 12a8 8 0 018-8v8H4z">
+        </path>
+    </svg>
 
-        <!-- Carte bancaire -->
-        <div>
-            <label class="block text-sm text-gray-600 mb-1">Numéro de carte</label>
-            <div class="relative">
-                <div id="card-element" class="px-4 py-3 border border-gray-300 rounded bg-gray-50"></div>
+    <!-- Texte normal -->
+    <span wire:loading.remove wire:target="processPayment">
+        Payer {{ number_format($amount, 2) }} DH
+    </span>
 
-
-            </div>
-        </div>
-
-        <!-- Nom sur la carte -->
-        <div>
-            <label class="block text-sm text-gray-600 mb-1">Nom sur la carte</label>
-            <input type="text" wire:model="name" placeholder="Nom Prénom" class="w-full px-4 py-3 rounded border border-gray-300 focus:ring-teal-500 focus:outline-none" required>
-        </div>
-       
-
-        <!-- Champ caché pour token -->
-        <input type="hidden" id="card_token" wire:model="card_token">
-
-<div class="relative">
-    <button type="submit" class="w-full px-4 py-3 bg-teal-600 text-white rounded font-semibold hover:bg-teal-700 transition"
-            wire:loading.attr="disabled">
-        <span wire:loading.remove> Payer </span>
-        <span wire:loading class="flex items-center justify-center gap-2">
-            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                 viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
-                <path class="opacity-75" fill="currentColor"
-                      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
-            </svg>
-            Paiement...
-        </span>
-    </button>
-</div>
+    <!-- Texte de chargement -->
+    <span wire:loading wire:target="processPayment">
+        Traitement...
+    </span>
+</button>
 
     </form>
-    
 
-    <!-- Script Stripe -->
-    <script src="https://js.stripe.com/v3/"></script>
-    <script>
+</div>
+
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
         const stripe = Stripe("{{ env('STRIPE_KEY') }}");
         const elements = stripe.elements();
         const card = elements.create('card');
@@ -96,17 +57,26 @@
 
         const form = document.getElementById('payment-form');
 
-        form.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const result = await stripe.createToken(card);
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault();
 
-            if (result.error) {
-                alert(result.error.message);
+            const { token, error } = await stripe.createToken(card);
+
+            if (error) {
+                document.getElementById('card-errors').textContent = error.message;
             } else {
-                @this.set('card_token', result.token.id).then(() => {
-                    form.submit();
-                });
+                Livewire.emit('setStripeToken', { token: token.id });
             }
         });
-    </script>
-</div>
+
+        Livewire.on('stripePaymentReady', () => {
+            form.submit();
+        });
+
+        Livewire.on('paymentSuccess', () => {
+            Livewire.restart();
+        });
+    });
+</script>
+
+

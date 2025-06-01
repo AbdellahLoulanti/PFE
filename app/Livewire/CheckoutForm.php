@@ -11,23 +11,14 @@ use Livewire\Component;
 class CheckoutForm extends Component
 {
     public $name;
-
     public $email;
-
     public $phone;
-
     public $address;
-
     public $city;
-
     public $postal_code;
-
     public $payment;
-
     public $cart = [];
-
     public $total = 0;
-
     public $items = [];
 
     protected $rules = [
@@ -52,52 +43,59 @@ class CheckoutForm extends Component
     {
         if (empty($this->cart)) {
             session()->flash('error', 'Votre panier est vide.');
-
             return;
         }
 
         $this->validate();
 
-        $order = Order::create([
-            'name' => $this->name,
-            'email' => $this->email,
-            'phone' => $this->phone,
-            'address' => $this->address,
-            'city' => $this->city,
-            'postal_code' => $this->postal_code,
-            'items' => json_encode($this->cart),
-            'total' => $this->total,
-            'payment_method' => $this->payment,
-        ]);
-
-        foreach ($this->cart as $item) {
-            $order->items()->create([
-                'product_id' => $item['id'],
-                'quantity' => $item['quantity'] ?? 1,
-                'price' => $item['price'],
+        if ($this->payment === 'cash') {
+            $order = Order::create([
+                'name' => $this->name,
+                'email' => $this->email,
+                'phone' => $this->phone,
+                'address' => $this->address,
+                'city' => $this->city,
+                'postal_code' => $this->postal_code,
+                'items' => json_encode($this->cart),
+                'total' => $this->total,
+                'payment_method' => $this->payment,
             ]);
 
-            // Mise à jour du stock
-            $product = Product::find($item['id']);
-            if ($product) {
-                $product->stock = max(0, $product->stock - ($item['quantity'] ?? 1));
-                $product->save();
+            foreach ($this->cart as $item) {
+                $order->items()->create([
+                    'product_id' => $item['id'],
+                    'quantity' => $item['quantity'] ?? 1,
+                    'price' => $item['price'],
+                ]);
+
+                $product = Product::find($item['id']);
+                if ($product) {
+                    $product->stock = max(0, $product->stock - ($item['quantity'] ?? 1));
+                    $product->save();
+                }
             }
-        }
-        $order->load('items.product');
 
-        Mail::to('pfe002025@gmail.com')->send(new OrderConfirmed($order));
-
-        // Nettoyer le panier
-        session()->forget('cart');
-
-        if ($this->payment === 'cash') {
-            session()->flash('success', 'Commande validée avec succès ! Paiement à la livraison.');
+            $order->load('items.product');
+            Mail::to('pfe002025@gmail.com')->send(new OrderConfirmed($order));
             session()->forget('cart');
 
-            return redirect()->route('products');
+            session()->flash('success', '✅ Votre commande a été bien enregistrée. Merci pour votre confiance !');
+            $this->reset(['name', 'email', 'phone', 'address', 'city', 'postal_code', 'payment']);
+            $this->cart = [];
+            $this->total = 0;
+
         } elseif ($this->payment === 'online') {
-            session()->put('order_id', $order->id);
+            session()->put('order_data', [
+                'name' => $this->name,
+                'email' => $this->email,
+                'phone' => $this->phone,
+                'address' => $this->address,
+                'city' => $this->city,
+                'postal_code' => $this->postal_code,
+                'cart' => $this->cart,
+                'total' => $this->total,
+                'payment_method' => $this->payment,
+            ]);
 
             return redirect()->route('paiement');
         } else {
@@ -108,9 +106,7 @@ class CheckoutForm extends Component
     public function render()
     {
         $cart = session()->get('cart', []);
-        $subtotal = collect($cart)->sum(function ($item) {
-            return $item['price'] * ($item['quantity'] ?? 1);
-        });
+        $subtotal = collect($cart)->sum(fn($item) => $item['price'] * ($item['quantity'] ?? 1));
 
         return view('livewire.checkout-form', [
             'cart' => $cart,

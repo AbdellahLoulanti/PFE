@@ -23,7 +23,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
         $validated['password'] = Hash::make($validated['password']);
         event(new Registered(($user = User::create($validated))));
         Auth::login($user);
-        $this->redirectIntended(route('checkout', absolute: false), navigate: true);
+        $this->redirectIntended(route('home', absolute: false), navigate: true);
     }
 }; ?>
 
@@ -112,7 +112,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
             <div class="text-center text-sm text-gray-600 mt-4">
 
-                Already have an account? 
+                Already have an account?
 
                 <a href="{{ route('login') }}" class="text-teal-600 hover:underline">Log in</a>
 
