@@ -27,7 +27,9 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->brandLogo(asset('images/logo.jpg')) 
+            ->brandLogo(asset('images/nb.png')) 
+            ->darkModeBrandLogo(asset('images/nbdark.png')) 
+            ->brandLogoHeight('3rem')            
             ->login()
             ->profile()
             ->colors([
