@@ -2,10 +2,21 @@
     <!-- Hero Section -->
     <section class="relative h-screen bg-cover bg-center bg-no-repeat -mt-[55px]" style="background-image: url('/images/ki.png');">
         <!-- Overlay -->
-        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="absolute inset-0 bg-black/50 z-0"></div>
 
-        <!-- Contenu -->
-        <div class="relative z-10 flex flex-col justify-center items-center h-full text-center px-6 text-white">
+        <!-- Message et contenu -->
+        <div class="relative z-20 flex flex-col justify-center items-center h-full text-center px-6 text-white">
+            @if (session()->has('success'))
+                <div class="mb-6 px-6 py-3 bg-green-100 text-green-800 rounded shadow-lg text-sm max-w-md w-full mx-auto">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6 drop-shadow-lg">
+        Transformez votre présence en ligne
+    </h1>
+    <!-- le reste du contenu -->
+
           <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6 drop-shadow-lg">
             Transformez votre présence en ligne
           </h1>
