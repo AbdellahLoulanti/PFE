@@ -5,6 +5,9 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\BlogPostResource\Pages;
 use App\Models\BlogPost;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
@@ -27,10 +30,18 @@ class BlogPostResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('title')
                     ->required(),
+                TextInput::make('tags') 
+                ->label('Tags (séparés par des virgules)')
+                ->placeholder('ex: Santé, Technologie, ...')
+                ->helperText('Entrez les tags séparés par des virgules'),
 
                 RichEditor::make('content')
                     ->columnSpan(2),
-
+                FileUpload::make('image')
+                    ->directory('blog-posts')
+                    ->image()
+                    ->imagePreviewHeight('150')
+                    ->visibility('public'),
                 Select::make('status')
                     ->label('Status')
                     ->options([
@@ -39,7 +50,7 @@ class BlogPostResource extends Resource
                     ])->default('draft')
                     ->required()
                     ->native(false),
-
+               
             ]);
     }
 
@@ -48,7 +59,19 @@ class BlogPostResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('title')->searchable(),
+                TextColumn::make('tags')
+                     ->label('Tags')
+                     ->limit(30),
+
                 TextColumn::make('slug'),
+                                ImageColumn::make('image')
+                    ->label('Image')
+                    ->getStateUsing(fn ($record) => $record->image ? asset('storage/'.$record->image) : null)
+                    ->width(80)
+                    ->height(80)
+                    ->extraImgAttributes([
+                        'style' => 'object-fit: cover; border: 1px solid black;',
+                    ]),
                 TextColumn::make('status')
                     ->label('Status')
                     ->badge()

@@ -27,21 +27,32 @@
       <div class="mt-6 text-gray-700 prose prose-lg prose-teal max-w-none">
 
         @php
-          preg_match('/<img[^>]+src="([^">]+)"/', $post->content, $matches);
-          $imageUrl = $matches[1] ?? null;
-          $contentSansImage = preg_replace('/<img[^>]+>/', '', $post->content);
-        @endphp
+  $fallback = asset('images/default.jpg');
+  $imageUrl = $post->image 
+      ? asset('storage/' . $post->image) 
+      : null;
 
-        @if($imageUrl)
-          <img 
-            src="{{ $imageUrl }}" 
-            alt="Image de l'article"
-            class="float-right ml-6 mb-4 w-96 rounded-xl shadow-md object-cover"
-            style="max-height: 480px;"
-          >
-        @endif
+  
+  if (!$imageUrl) {
+      preg_match('/<img[^>]+src="([^">]+)"/', $post->content, $matches);
+      $imageUrl = $matches[1] ?? $fallback;
+  }
 
-        {!! $contentSansImage !!}
+  
+  $contentSansImage = preg_replace('/<img[^>]+>/', '', $post->content);
+@endphp
+
+@if($imageUrl)
+  <img 
+    src="{{ $imageUrl }}" 
+    alt="Image de l'article"
+    class="float-right ml-6 mb-4 w-96 rounded-xl shadow-md object-cover"
+    style="max-height: 480px;"
+  >
+@endif
+
+{!! $contentSansImage !!}
+
 
       </div>
 
