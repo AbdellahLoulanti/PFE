@@ -11,12 +11,11 @@
 
     <div class="grid md:grid-cols-3 gap-8">
       @forelse ($posts as $post)
-       @php
-  preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $post->content, $image);
-  $fallback = asset('images/default.jpg');
-  $imageUrl = $image['src'] ?? $fallback;
-  $excerpt = \Illuminate\Support\Str::limit(strip_tags($post->content), 100);
-@endphp
+        @php
+          $fallback = asset('images/default.jpg');
+          $imageUrl = $post->image ? asset('storage/' . $post->image) : $fallback;
+          $excerpt = \Illuminate\Support\Str::limit(strip_tags($post->content), 100);
+        @endphp
 
         <article class="flex flex-col items-start justify-between bg-white rounded-2xl overflow-hidden shadow-sm transition hover:shadow-lg hover:-translate-y-1 border border-gray-200">
           <div class="relative w-full">
@@ -24,20 +23,33 @@
               src="{{ $imageUrl }}" 
               alt="{{ $post->title }}" 
               class="aspect-video w-full object-cover bg-gray-100"
-             
             >
             <div class="absolute inset-0 rounded-2xl ring-1 ring-gray-900/10 ring-inset"></div>
           </div>
 
           <div class="p-6 w-full flex flex-col justify-between h-full">
-            <div class="flex items-center gap-x-4 text-xs text-gray-500 mb-4">
-              <time datetime="{{ $post->created_at->toDateString() }}">
-                {{ $post->created_at->format('d M Y') }}
-              </time>
-              <span class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600">
-                Général
-              </span>
-            </div>
+@php
+  $tags = $post->tags ? explode(',', $post->tags) : [];
+@endphp
+
+<div class="flex items-center gap-x-4 text-xs mb-4">
+  <time datetime="{{ $post->created_at->toDateString() }}" class="text-gray-500">
+    {{ $post->created_at->format('d M Y') }}
+  </time>
+
+  @if (count($tags) > 0 && $tags[0] !== '')
+    @foreach ($tags as $tag)
+      <span class="bg-teal-100 text-teal-800 text-xs font-semibold px-3 py-1 rounded-full">
+        {{ trim($tag) }}
+      </span>
+    @endforeach
+  @else
+    <span class="bg-gray-200 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full">
+      Général
+    </span>
+  @endif
+</div>
+
 
             <div class="group relative">
               <h3 class="text-lg font-semibold text-gray-900 group-hover:text-teal-600 transition-colors duration-200">
@@ -60,8 +72,9 @@
         <p class="text-gray-500 col-span-3 text-center">Aucun article trouvé.</p>
       @endforelse
     </div>
-        <div class="mt-4 ">
-        {{ $posts->links() }}
+
+    <div class="mt-4">
+      {{ $posts->links() }}
     </div>
   </div>
 </section>

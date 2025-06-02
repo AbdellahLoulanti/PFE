@@ -98,10 +98,11 @@
       <div class="grid md:grid-cols-3 gap-8">
         @foreach ($posts as $post)
           <article class="bg-gray-50 rounded-xl overflow-hidden shadow hover:shadow-lg transition transform hover:-translate-y-1">
-            @php
-              preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $post->content, $image);
-              $imageUrl = $image['src'] ?? "https://source.unsplash.com/600x400/?" . urlencode($post->title);
-            @endphp
+        @php
+          $fallback = asset('images/default.jpg');
+          $imageUrl = $post->image ? asset('storage/' . $post->image) : $fallback;
+          $excerpt = \Illuminate\Support\Str::limit(strip_tags($post->content), 100);
+        @endphp
             <img
               src="{{ $imageUrl }}"
               alt="{{ $post->title }}"

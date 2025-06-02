@@ -21,6 +21,7 @@ class BlogPost extends Model
         'content',
         'status',
         'tags',
+        'image',
     ];
 
     public function getSlugOptions(): SlugOptions
