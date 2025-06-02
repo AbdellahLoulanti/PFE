@@ -64,7 +64,7 @@ class BlogPostResource extends Resource
                      ->limit(30),
 
                 TextColumn::make('slug'),
-                                ImageColumn::make('image')
+                    ImageColumn::make('image')
                     ->label('Image')
                     ->getStateUsing(fn ($record) => $record->image ? asset('storage/'.$record->image) : null)
                     ->width(80)
