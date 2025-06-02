@@ -28,6 +28,8 @@ Route::get('/showproduct/{productId}', ShowProduct::class)->name('showproduct');
 Route::get('/checkout', CheckoutForm::class)->name('checkout');
 Route::get('/paiement', PaymentForm::class)->name('paiement');
 
+
+
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
@@ -35,4 +37,46 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/password', 'settings.password')->name('settings.password');
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
 });
+
+use App\Models\Order;
+
+Route::get('/payment/success', function () {
+    $orderData = session('order_data');
+
+    if (!$orderData) {
+        return redirect()->route('checkout')->with('error', 'Aucune commande trouvée.');
+    }
+
+    $order = Order::create([
+        'name' => $orderData['name'],
+        'email' => $orderData['email'],
+        'phone' => $orderData['phone'],
+        'address' => $orderData['address'],
+        'city' => $orderData['city'],
+        'postal_code' => $orderData['postal_code'],
+        'items' => json_encode($orderData['cart']),
+        'total' => $orderData['total'],
+        'payment_method' => 'online',
+    ]);
+
+    foreach ($orderData['cart'] as $item) {
+        $order->items()->create([
+            'product_id' => $item['id'],
+            'quantity' => $item['quantity'],
+            'price' => $item['price'],
+        ]);
+
+        $product = \App\Models\Product::find($item['id']);
+        if ($product) {
+            $product->stock = max(0, $product->stock - $item['quantity']);
+            $product->save();
+        }
+    }
+
+    session()->forget('cart');
+    session()->forget('order_data');
+
+    return redirect()->route('home')->with('success', '✅ Paiement réussi. Merci pour votre commande !');
+})->name('payment.success');
+
 require __DIR__.'/auth.php';

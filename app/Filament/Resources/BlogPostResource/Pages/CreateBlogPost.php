@@ -22,4 +22,13 @@ class CreateBlogPost extends CreateRecord
 
         return $blogPost;
     }
+     protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
+
+    protected function getCreatedNotificationTitle(): ?string
+    {
+        return 'Blog created';
+    }
 }
