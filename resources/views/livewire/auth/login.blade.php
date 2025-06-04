@@ -110,18 +110,28 @@ new #[Layout('components.layouts.auth')] class extends Component {
                     @endif
                 </div>
 
-<button type="submit"
-        class="w-full bg-teal-500 hover:bg-teal-600 text-white py-3 rounded-full font-semibold transition flex items-center justify-center"
-        wire:loading.attr="disabled">
-    <svg wire:loading class="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-         viewBox="0 0 24 24">
-        <circle class="opacity-25" cx="12" cy="12" r="10"
-                stroke="currentColor" stroke-width="4"></circle>
-        <path class="opacity-75" fill="currentColor"
-              d="M4 12a8 8 0 018-8v8z"></path>
-    </svg>
-    <span wire:loading.remove>Log In</span>
-</button>
+            <button type="submit"
+                    class="w-full bg-teal-500 hover:bg-teal-600 text-white py-3 rounded-full font-semibold transition flex items-center justify-center"
+                    wire:loading.attr="disabled">
+                <svg wire:loading class="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10"
+                            stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor"
+                        d="M4 12a8 8 0 018-8v8z"></path>
+                </svg>
+                <span wire:loading.remove>Log In</span>
+            </button>
+
+               <a href="{{ route('auth.google.redirect') }}"
+                class="w-full flex items-center justify-center bg-red-500 hover:bg-red-600 text-white py-3 rounded-full font-semibold transition">
+                    <svg class="h-5 w-5 mr-2 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                        <path d="M44.5 20H24v8.5h11.8C34.3 33.3 29.8 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l6-6C34.2 5.5 29.4 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21c10.5 0 19.3-7.8 20.5-18 .1-.7.5-3.1.5-4z"/>
+                    </svg>
+                    Log in with Google
+                </a>
+
+
 
             </form>
 

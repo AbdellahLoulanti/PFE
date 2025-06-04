@@ -12,9 +12,7 @@
                 </div>
             @endif
 
-    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6 drop-shadow-lg">
-        Transformez votre présence en ligne
-    </h1>
+    
     <!-- le reste du contenu -->
 
           <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6 drop-shadow-lg">

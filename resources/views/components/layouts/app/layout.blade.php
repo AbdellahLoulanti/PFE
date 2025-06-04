@@ -39,6 +39,9 @@
             <a href="{{ route('events') }}" class="font-bold hover:text-[#008080] transition flex items-center gap-2">
               <i data-lucide="calendar-days" class="w-4 h-4"></i> Évènements
             </a>
+           <a href="{{ route('jobs') }}" class="font-bold hover:text-[#008080] transition flex items-center gap-2">
+            <i data-lucide="briefcase" class="w-4 h-4"></i> Offres d’emploi
+           </a>
             <a href="{{route('products')}}" class="font-bold hover:text-[#008080] transition flex items-center gap-2">
               <i data-lucide="shopping-bag" class="w-4 h-4"></i> Produits
             </a>

@@ -5,6 +5,7 @@ namespace App\Filament\Widgets;
 use App\Models\Event;
 use App\Models\BlogPost;
 use App\Models\Product;
+use App\Models\OrderItem;
 use App\Models\User;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Card;
@@ -28,7 +29,7 @@ class StatsOverview extends BaseWidget
                 ->color('info')
                 ->chart([20, 30, 40, 35, 45]),
 
-            Card::make('Total Revenue', number_format(Product::sum('price'), 0, '.', ',') . ' MAD')
+            Card::make('Total Revenue', number_format( OrderItem::sum(\DB::raw('price * quantity')), 0, '.', ','    ) . ' MAD')
                 ->description('Revenue Generated')
                 ->icon('heroicon-o-currency-dollar')
                 ->color('success')
