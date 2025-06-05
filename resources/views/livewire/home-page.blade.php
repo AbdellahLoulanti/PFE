@@ -12,7 +12,7 @@
                 </div>
             @endif
 
-    
+
     <!-- le reste du contenu -->
 
           <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6 drop-shadow-lg">
@@ -213,9 +213,55 @@
     </div>
   @endif
 </div>
-
-
-
 </section>
+
+<!-- Jobs Section -->
+<section class="py-24 bg-gradient-to-br from-white to-gray-100">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-4xl font-extrabold text-center text-teal-800 mb-16">
+      💼 Dernières offres d’emploi
+    </h2>
+
+    @if($jobs->isEmpty())
+      <div class="text-center text-gray-500">
+        Aucune offre d’emploi disponible pour le moment.
+      </div>
+    @else
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+        @foreach ($jobs as $job)
+          <div class="bg-white border border-gray-200 rounded-3xl shadow-md hover:shadow-xl transform hover:-translate-y-1 transition duration-300 p-6 flex flex-col justify-between">
+            
+            <!-- Titre du poste -->
+            <div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                {{ $job->post }}
+              </h3>
+
+              <!-- Détails -->
+              <p class="text-sm text-gray-600 mb-1">
+                📍 {{ $job->location }} | {{ $job->type }}
+              </p>
+              <p class="text-xs text-gray-500 mb-3">
+                🕒 Publié le {{ \Carbon\Carbon::parse($job->published_at)->format('d M Y') }}
+              </p>
+
+              <!-- Description -->
+              <p class="text-sm text-gray-700 leading-relaxed mb-4">
+                {{ \Illuminate\Support\Str::limit(strip_tags($job->description), 90) }}
+              </p>
+            </div>
+
+            <!-- Lien -->
+            <a href="{{ route('jobs.show', $job) }}" class="inline-block mt-auto text-white bg-teal-600 hover:bg-teal-700 font-semibold px-4 py-2 rounded-lg text-sm text-center transition duration-300">
+              Voir les détails →
+            </a>
+          </div>
+        @endforeach
+      </div>
+    @endif
+  </div>
+</section>
+
+
 </div>
 

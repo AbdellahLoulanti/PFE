@@ -166,7 +166,7 @@
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 text-sm">
       <!-- Logo & Description -->
       <div>
-        <h2 class="text-xl font-bold text-white mb-4">MyProject</h2>
+        <h2 class="text-xl font-bold text-white mb-4">Publix</h2>
         <p class="text-gray-200 leading-relaxed">
           Des solutions numériques innovantes, conçues avec passion et expertise.
         </p>

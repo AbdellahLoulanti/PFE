@@ -22,6 +22,7 @@ class PermissionSeeder extends Seeder
             'blogpost.view', 'blogpost.create', 'blogpost.edit', 'blogpost.delete',
             'product.view', 'product.create', 'product.edit', 'product.delete',
             'contactmessage.view', 'contactmessage.create', 'contactmessage.edit', 'contactmessage.delete',
+            'job.view', 'job.create', 'job.edit', 'job.delete',
 
         ];
 
@@ -29,8 +30,8 @@ class PermissionSeeder extends Seeder
         foreach ($permissions as $permission) {
             Permission::firstOrCreate(['name' => $permission]);
         }
-$role =Role::findOrCreate('admin');
-$role->givePermissionTo($permissions);
+            $role =Role::findOrCreate('admin');
+            $role->givePermissionTo($permissions);
 
     }
 }

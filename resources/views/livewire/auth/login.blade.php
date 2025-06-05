@@ -123,13 +123,12 @@ new #[Layout('components.layouts.auth')] class extends Component {
                 <span wire:loading.remove>Log In</span>
             </button>
 
-               <a href="{{ route('auth.google.redirect') }}"
-                class="w-full flex items-center justify-center bg-red-500 hover:bg-red-600 text-white py-3 rounded-full font-semibold transition">
-                    <svg class="h-5 w-5 mr-2 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-                        <path d="M44.5 20H24v8.5h11.8C34.3 33.3 29.8 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l6-6C34.2 5.5 29.4 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21c10.5 0 19.3-7.8 20.5-18 .1-.7.5-3.1.5-4z"/>
-                    </svg>
-                    Log in with Google
-                </a>
+              <a href="{{ route('auth.google.redirect') }}"
+                class="w-full flex items-center justify-center bg-white border border-gray-300 hover:bg-gray-100 text-gray-800 py-3 rounded-full font-semibold transition">
+                    <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" class="h-5 w-5 mr-2">
+                    Se connecter avec Google
+              </a>
+
 
 
 

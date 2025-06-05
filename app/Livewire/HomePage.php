@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\BlogPost;
 use App\Models\Event;
 use App\Models\Product;
+use App\Models\Job;
 use Livewire\Component;
 
 class HomePage extends Component
@@ -12,6 +13,7 @@ class HomePage extends Component
     public $events;
     public $posts;
     public $products;
+    public $jobs;
 
     public function mount()
     {
@@ -21,11 +23,17 @@ class HomePage extends Component
             ->get();
         $this->posts = BlogPost::where('status', 'published')
             ->orderBy('created_at', 'desc')
-            ->take(3)
+            ->take(4)
             ->get();
          $this->products = Product::where('stock', '>', 0)
-         ->latest()
-         ->take(6)->get();
+            ->latest()
+            ->take(6)->get();
+         $this->jobs = Job::orderBy('published_at', 'desc')
+            ->take(4)
+            ->get();
+           
+
+
 
     }
 
