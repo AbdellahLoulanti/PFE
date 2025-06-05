@@ -154,8 +154,6 @@
         </div>
       </header>
 
-
-
   <!-- Contenu -->
   <main class="pt-28 pb-16 px-4 sm:px-6 lg:px-8 min-h-screen bg-gray">
     @yield('content')
