@@ -1,6 +1,5 @@
 <?php
 
-use Laravel\Socialite\Facades\Socialite;
 use App\Livewire\AboutUs;
 use App\Livewire\Blogs;
 use App\Livewire\BlogShow;
@@ -10,14 +9,15 @@ use App\Livewire\ContactUs;
 use App\Livewire\Events;
 use App\Livewire\EventsList;
 use App\Livewire\HomePage;
+use App\Livewire\JobPost;
+use App\Livewire\JobsList;
 use App\Livewire\PaymentForm;
 use App\Livewire\Products;
-use App\Livewire\JobsList;
-use App\Livewire\JobPost;
 use App\Livewire\ShowProduct;
-use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use Filament\Facades\Filament;
+use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 use Livewire\Volt\Volt;
 
 Route::get('/', HomePage::class)->name('home');
@@ -35,8 +35,6 @@ Route::get('/showproduct/{productId}', ShowProduct::class)->name('showproduct');
 Route::get('/checkout', CheckoutForm::class)->name('checkout');
 Route::get('/paiement', PaymentForm::class)->name('paiement');
 
-
-
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
@@ -50,7 +48,7 @@ use App\Models\Order;
 Route::get('/payment/success', function () {
     $orderData = session('order_data');
 
-    if (!$orderData) {
+    if (! $orderData) {
         return redirect()->route('checkout')->with('error', 'Aucune commande trouvée.');
     }
 

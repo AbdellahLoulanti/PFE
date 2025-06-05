@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Job;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class JobPolicy
 {
@@ -16,6 +15,7 @@ class JobPolicy
         if ($user->hasPermissionTo('job.view')) {
             return true;
         }
+
         return false;
     }
 
@@ -35,6 +35,7 @@ class JobPolicy
         if ($user->hasPermissionTo('job.create')) {
             return true;
         }
+
         return false;
     }
 
@@ -46,6 +47,7 @@ class JobPolicy
         if ($user->hasPermissionTo('job.edit')) {
             return true;
         }
+
         return false;
     }
 
@@ -57,6 +59,7 @@ class JobPolicy
         if ($user->hasPermissionTo('job.delete')) {
             return true;
         }
+
         return false;
     }
 

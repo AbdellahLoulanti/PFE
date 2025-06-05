@@ -1,9 +1,7 @@
 <?php
+
 namespace App\Livewire;
 
-use App\Models\Order;
-use App\Models\Product;
-use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 use Stripe\Checkout\Session as StripeSession;
 use Stripe\Stripe;
@@ -15,7 +13,7 @@ class PaymentForm extends Component
     public function mount()
     {
         $orderData = session('order_data');
-        if (!$orderData) {
+        if (! $orderData) {
             return redirect()->route('checkout');
         }
 
@@ -39,7 +37,7 @@ class PaymentForm extends Component
             'payment_method_types' => ['card'],
             'line_items' => [$lineItems],
             'mode' => 'payment',
-            'success_url' => route('payment.success', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
+            'success_url' => route('payment.success', [], true).'?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => route('checkout'),
         ]);
 

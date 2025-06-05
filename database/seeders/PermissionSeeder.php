@@ -30,8 +30,8 @@ class PermissionSeeder extends Seeder
         foreach ($permissions as $permission) {
             Permission::firstOrCreate(['name' => $permission]);
         }
-            $role =Role::findOrCreate('admin');
-            $role->givePermissionTo($permissions);
+        $role = Role::findOrCreate('admin');
+        $role->givePermissionTo($permissions);
 
     }
 }

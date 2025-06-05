@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('job_offers', function (Blueprint $table) {
-        $table->id();
-        $table->string('post');
-        $table->text('description');
-        $table->string('location');
-        $table->string('type')->default('CDI');
-        $table->timestamp('published_at')->nullable();
-        $table->timestamps();
-    });
+        Schema::create('job_offers', function (Blueprint $table) {
+            $table->id();
+            $table->string('post');
+            $table->text('description');
+            $table->string('location');
+            $table->string('type')->default('CDI');
+            $table->timestamp('published_at')->nullable();
+            $table->timestamps();
+        });
 
     }
 

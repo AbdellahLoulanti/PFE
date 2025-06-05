@@ -11,14 +11,23 @@ use Livewire\Component;
 class CheckoutForm extends Component
 {
     public $name;
+
     public $email;
+
     public $phone;
+
     public $address;
+
     public $city;
+
     public $postal_code;
+
     public $payment;
+
     public $cart = [];
+
     public $total = 0;
+
     public $items = [];
 
     protected $rules = [
@@ -43,6 +52,7 @@ class CheckoutForm extends Component
     {
         if (empty($this->cart)) {
             session()->flash('error', 'Votre panier est vide.');
+
             return;
         }
 
@@ -106,7 +116,7 @@ class CheckoutForm extends Component
     public function render()
     {
         $cart = session()->get('cart', []);
-        $subtotal = collect($cart)->sum(fn($item) => $item['price'] * ($item['quantity'] ?? 1));
+        $subtotal = collect($cart)->sum(fn ($item) => $item['price'] * ($item['quantity'] ?? 1));
 
         return view('livewire.checkout-form', [
             'cart' => $cart,

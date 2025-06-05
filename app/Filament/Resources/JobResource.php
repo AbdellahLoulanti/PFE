@@ -9,16 +9,19 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 
 class JobResource extends Resource
 {
     protected static ?string $model = Job::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
+
     protected static ?string $navigationGroup = 'Management';
+
     protected static ?string $navigationLabel = 'Offres d\'emploi';
+
     protected static ?string $pluralLabel = 'Offres d\'emploi';
+
     protected static ?string $label = 'Offre d\'emploi';
 
     public static function form(Form $form): Form

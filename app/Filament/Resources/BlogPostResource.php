@@ -5,14 +5,14 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\BlogPostResource\Pages;
 use App\Models\BlogPost;
 use Filament\Forms;
-use Filament\Forms\Components\TextInput;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -30,10 +30,10 @@ class BlogPostResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('title')
                     ->required(),
-                TextInput::make('tags') 
-                ->label('Tags (séparés par des virgules)')
-                ->placeholder('ex: Santé, Technologie, ...')
-                ->helperText('Entrez les tags séparés par des virgules'),
+                TextInput::make('tags')
+                    ->label('Tags (séparés par des virgules)')
+                    ->placeholder('ex: Santé, Technologie, ...')
+                    ->helperText('Entrez les tags séparés par des virgules'),
 
                 RichEditor::make('content')
                     ->columnSpan(2),
@@ -50,7 +50,7 @@ class BlogPostResource extends Resource
                     ])->default('draft')
                     ->required()
                     ->native(false),
-               
+
             ]);
     }
 
@@ -60,11 +60,11 @@ class BlogPostResource extends Resource
             ->columns([
                 TextColumn::make('title')->searchable(),
                 TextColumn::make('tags')
-                     ->label('Tags')
-                     ->limit(30),
+                    ->label('Tags')
+                    ->limit(30),
 
                 TextColumn::make('slug'),
-                    ImageColumn::make('image')
+                ImageColumn::make('image')
                     ->label('Image')
                     ->getStateUsing(fn ($record) => $record->image ? asset('storage/'.$record->image) : null)
                     ->width(80)

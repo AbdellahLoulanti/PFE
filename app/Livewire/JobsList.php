@@ -12,9 +12,8 @@ class JobsList extends Component
         $groupedJobs = Job::whereNotNull('published_at')
             ->orderByDesc('published_at')
             ->get()
-            ->groupBy('type'); 
+            ->groupBy('type');
 
         return view('livewire.jobs-list', compact('groupedJobs'));
     }
 }
-

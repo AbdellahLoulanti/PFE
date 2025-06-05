@@ -4,17 +4,19 @@ namespace App\Filament\Widgets;
 
 use App\Models\BlogPost;
 use App\Models\Event;
-use App\Models\Product;
 use App\Models\OrderItem;
-use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Filament\Widgets\ChartWidget;
+use Illuminate\Support\Facades\DB;
 
 class StatsG extends ChartWidget
 {
-    protected int | string | array $columnSpan = 'full';
+    protected int|string|array $columnSpan = 'full';
+
     protected static ?int $sort = 2;
+
     protected static ?string $heading = 'Activité de la plateforme';
+
     protected static ?string $maxHeight = '360px';
 
     protected function getData(): array
@@ -37,13 +39,13 @@ class StatsG extends ChartWidget
             ->pluck('count', 'month')
             ->toArray();
 
-         $currentYear = now()->year;
-         $revenues = OrderItem::selectRaw('MONTH(created_at) as month, SUM(price * quantity) as total')
-        ->whereYear('created_at', $currentYear)
-        ->groupBy(DB::raw('MONTH(created_at)'))
-        ->orderBy(DB::raw('MONTH(created_at)'))
-        ->pluck('total', 'month')
-        ->toArray();
+        $currentYear = now()->year;
+        $revenues = OrderItem::selectRaw('MONTH(created_at) as month, SUM(price * quantity) as total')
+            ->whereYear('created_at', $currentYear)
+            ->groupBy(DB::raw('MONTH(created_at)'))
+            ->orderBy(DB::raw('MONTH(created_at)'))
+            ->pluck('total', 'month')
+            ->toArray();
 
         $eventData = [];
         $blogData = [];

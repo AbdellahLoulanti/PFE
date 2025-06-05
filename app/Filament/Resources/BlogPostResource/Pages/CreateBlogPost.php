@@ -22,7 +22,8 @@ class CreateBlogPost extends CreateRecord
 
         return $blogPost;
     }
-     protected function getRedirectUrl(): string
+
+    protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');
     }

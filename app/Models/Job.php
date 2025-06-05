@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Job extends Model
 {
     protected $table = 'job_offers';
-    
+
     protected $fillable = [
         'post',
         'description',
@@ -17,8 +17,6 @@ class Job extends Model
     ];
 
     protected $casts = [
-    'published_at' => 'datetime',
-];
-
-
+        'published_at' => 'datetime',
+    ];
 }
