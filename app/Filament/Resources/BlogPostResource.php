@@ -46,11 +46,18 @@ class BlogPostResource extends Resource
                     ])->default('draft')
                     ->required()
                     ->native(false),
+
                 FileUpload::make('image')
-                    ->directory('blog-posts')
-                    ->image()
-                    ->imagePreviewHeight('150')
-                    ->visibility('public'),
+                    ->label('Image de couverture') 
+                    ->directory('blog-posts')      
+                    ->image()                      
+                    ->imagePreviewHeight(150)    
+                    ->visibility('public')       
+                    ->preserveFilenames()        
+                    ->loadingIndicatorPosition('left')  
+                    ->panelLayout('compact')            
+                    ->required(),                       
+
                
 
             ]);

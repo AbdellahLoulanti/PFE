@@ -50,7 +50,13 @@ class EventResource extends Resource
                 FileUpload::make('cover_image')
                     ->image()
                     ->directory('event-covers')
-                    ->disk('public'),
+                    ->disk('public')
+                    ->imagePreviewHeight(150)
+                    ->visibility('public')       
+                    ->preserveFilenames()        
+                    ->loadingIndicatorPosition('left')  
+                    ->panelLayout('compact')            
+                    ->required(), 
 
                 TextInput::make('tags')
                     ->label('Tags (séparés par des virgules)')
