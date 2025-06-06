@@ -38,12 +38,7 @@ class BlogPostResource extends Resource
 
                 Textarea::make('content')
                     ->required(),
-                FileUpload::make('image')
-                    ->directory('blog-posts')
-                    ->image()
-                    ->imagePreviewHeight('150')
-                    ->visibility('public'),
-                Select::make('status')
+                 Select::make('status')
                     ->label('Status')
                     ->options([
                         'draft' => 'Draft',
@@ -51,6 +46,12 @@ class BlogPostResource extends Resource
                     ])->default('draft')
                     ->required()
                     ->native(false),
+                FileUpload::make('image')
+                    ->directory('blog-posts')
+                    ->image()
+                    ->imagePreviewHeight('150')
+                    ->visibility('public'),
+               
 
             ]);
     }
