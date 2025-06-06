@@ -10,6 +10,7 @@ use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Forms\Components\Textarea;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
@@ -35,8 +36,8 @@ class BlogPostResource extends Resource
                     ->placeholder('ex: Santé, Technologie, ...')
                     ->helperText('Entrez les tags séparés par des virgules'),
 
-                RichEditor::make('content')
-                    ->columnSpan(2),
+                Textarea::make('content')
+                    ->required(),
                 FileUpload::make('image')
                     ->directory('blog-posts')
                     ->image()
