@@ -39,11 +39,13 @@ class BlogPostResource extends Resource
                 Textarea::make('content')
                     ->required(),
                  Select::make('status')
+                    ->label('Status')
                     ->options([
                         'draft' => 'Draft',
                         'published' => 'Published',
-                    ])
+                    ])->default('draft')
                     ->required()
+                    ->native(false),
                 FileUpload::make('image')
                     ->directory('blog-posts')
                     ->image()
