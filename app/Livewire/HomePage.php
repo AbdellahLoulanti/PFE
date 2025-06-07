@@ -26,7 +26,7 @@ class HomePage extends Component
             ->get();
         $this->posts = BlogPost::where('status', 'published')
             ->orderBy('created_at', 'desc')
-            ->take(4)
+            ->take(6)
             ->get();
         $this->products = Product::where('stock', '>', 0)
             ->latest()
