@@ -36,13 +36,78 @@
                     @endif
                 </div>
 
-                {{-- Description de l'événement --}}
-                <div class="mt-10 text-gray-700 prose prose-lg prose-teal w-full max-w-none">
-                    <p><strong class="text-teal-700">Lieu :</strong> {{ $event->location }}</p>
-                    <p><strong class="text-teal-700">Date début :</strong> {{ \Carbon\Carbon::parse($event->start_date)->format('d/m/Y') }}</p>
-                    <p><strong class="text-teal-700">Date fin :</strong> {{ \Carbon\Carbon::parse($event->end_date)->format('d/m/Y') }}</p>
-                    <p><strong class="text-teal-700">Description :</strong> {{ $event->description }}</p>
-                </div>
+               {{-- Description de l'événement --}}
+                    <div class="mt-10 text-gray-700 prose prose-lg prose-teal w-full max-w-none">
+                        <div class="bg-teal-50 p-6 rounded-xl shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+                            <p class="text-xl font-semibold text-teal-700 mb-4"><strong>Lieu :</strong> {{ $event->location }}</p>
+                            
+                            <p class="text-xl font-semibold text-teal-700 mb-4">
+                                <strong>Date début :</strong> {{ \Carbon\Carbon::parse($event->start_date)->format('d/m/Y') }}
+                            </p>
+                            
+                            <p class="text-xl font-semibold text-teal-700 mb-4">
+                                <strong>Date fin :</strong> {{ \Carbon\Carbon::parse($event->end_date)->format('d/m/Y') }}
+                            </p>
+                            
+                            <div class="bg-teal-100 p-4 rounded-md mt-6 shadow-md hover:bg-teal-200 transition-all duration-300">
+                                <p class="text-lg text-gray-800"><strong class="text-teal-700">Description :</strong> {{ $event->description }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <style>
+                        /* Text Prose */
+                        .prose {
+                            line-height: 1.7;
+                            font-size: 1.125rem;
+                            font-weight: 400;
+                        }
+
+                        .prose-lg {
+                            font-size: 1.25rem;
+                        }
+
+                        /* Custom Styling */
+                        .prose p {
+                            margin-bottom: 1.5rem;
+                        }
+
+                        .prose .text-teal-700 {
+                            color: #4c9f9f; /* Teal */
+                        }
+
+                        .prose .text-gray-800 {
+                            color: #2d3748;
+                        }
+
+                        .prose .text-gray-700 {
+                            color: #4a5568;
+                        }
+
+                        .prose .text-xl {
+                            font-size: 1.25rem;
+                            font-weight: 600;
+                        }
+
+                        .prose .font-semibold {
+                            font-weight: 600;
+                        }
+
+                        /* Hover Animations */
+                        .prose .hover\:scale-105:hover {
+                            transform: scale(1.05);
+                        }
+
+                        .prose .hover\:shadow-2xl:hover {
+                            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+                        }
+
+                        /* Hover on background */
+                        .prose .hover\:bg-teal-200:hover {
+                            background-color: #b2f5ea; /* Lighter teal on hover */
+                        }
+                    </style>
+
 
             </div>
         </div>

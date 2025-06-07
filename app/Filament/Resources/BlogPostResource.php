@@ -6,11 +6,10 @@ use App\Filament\Resources\BlogPostResource\Pages;
 use App\Models\BlogPost;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Forms\Components\Textarea;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
@@ -38,7 +37,7 @@ class BlogPostResource extends Resource
 
                 Textarea::make('content')
                     ->required(),
-                 Select::make('status')
+                Select::make('status')
                     ->label('Status')
                     ->options([
                         'draft' => 'Draft',
@@ -48,17 +47,15 @@ class BlogPostResource extends Resource
                     ->native(false),
 
                 FileUpload::make('image')
-                    ->label('Image de couverture') 
-                    ->directory('blog-posts')      
-                    ->image()                      
-                    ->imagePreviewHeight(150)    
-                    ->visibility('public')       
-                    ->preserveFilenames()        
-                    ->loadingIndicatorPosition('left')  
-                    ->panelLayout('compact')            
-                    ->required(),                       
-
-               
+                    ->label('Image de couverture')
+                    ->directory('blog-posts')
+                    ->image()
+                    ->imagePreviewHeight(150)
+                    ->visibility('public')
+                    ->preserveFilenames()
+                    ->loadingIndicatorPosition('left')
+                    ->panelLayout('compact')
+                    ->required(),
 
             ]);
     }

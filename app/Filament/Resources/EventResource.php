@@ -52,11 +52,11 @@ class EventResource extends Resource
                     ->directory('event-covers')
                     ->disk('public')
                     ->imagePreviewHeight(150)
-                    ->visibility('public')       
-                    ->preserveFilenames()        
-                    ->loadingIndicatorPosition('left')  
-                    ->panelLayout('compact')            
-                    ->required(), 
+                    ->visibility('public')
+                    ->preserveFilenames()
+                    ->loadingIndicatorPosition('left')
+                    ->panelLayout('compact')
+                    ->required(),
 
                 TextInput::make('tags')
                     ->label('Tags (séparés par des virgules)')
